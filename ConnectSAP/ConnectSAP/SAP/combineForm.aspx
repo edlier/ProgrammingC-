@@ -16,17 +16,17 @@
                 <asp:BoundField DataField="WH01" HeaderText="WH01" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="WH03" HeaderText="WH03" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="WH04" HeaderText="WH04" DataFormatString="{0:0.##}"/>
-                <asp:BoundField DataField="WH16" HeaderText="WH16" DataFormatString="{0:0.##}"/>
-
-                
+                <asp:BoundField DataField="WH16" HeaderText="WH16" DataFormatString="{0:0.##}"/>                
                 <asp:BoundField DataField="QCqty" HeaderText="QC QTY" DataFormatString="{0:0.##}"/>
+                <asp:BoundField DataField="MinOrdrQty" HeaderText="最小訂購" DataFormatString="{0:G2}"/>
+                <asp:BoundField DataField="LeadTime" HeaderText="前置時間" DataFormatString="{0:G2}"/>
+                <asp:BoundField DataField="MinLevel" HeaderText="最低庫存量" DataFormatString="{0:G2}"/>
 
-                
 
             </Columns>
         </asp:GridView>
-        <asp:GridView ID="Grid_test" runat="server"></asp:GridView>
-        <asp:GridView ID="grid_stock" runat="server"></asp:GridView>
+        <%--<asp:GridView ID="Grid_test" runat="server"></asp:GridView>--%>
+        <%--<asp:GridView ID="grid_stock" runat="server"></asp:GridView>--%>
 
     </form>
 </body>

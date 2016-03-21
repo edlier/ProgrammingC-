@@ -66,3 +66,4 @@ C:\Users\cocohuang\Desktop\ConnectSAP\ConnectSAP\bin\zh-Hant\Microsoft.Owin.Secu
 C:\Users\cocohuang\Desktop\ConnectSAP\ConnectSAP\obj\Debug\ConnectSAP.csprojResolveAssemblyReference.cache
 C:\Users\cocohuang\Desktop\ConnectSAP\ConnectSAP\obj\Debug\ConnectSAP.dll
 C:\Users\cocohuang\Desktop\ConnectSAP\ConnectSAP\obj\Debug\ConnectSAP.pdb
+C:\Users\cocohuang\Desktop\ConnectSAP\ConnectSAP\obj\Debug\ConnectSAP.csproj.ResolveComReference.cache
