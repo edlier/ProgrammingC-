@@ -69,6 +69,25 @@ namespace MSSQL_CON
             dt = connenctTry.GetDataTable(sqlstr);
             return dt;
         }
+
+        public DataTable search_QCvalidateQty2()
+        {
+            DataTable dt = new DataTable();
+            string sqlstr = "";
+            sqlstr += " Select ";
+            sqlstr += " DRF1.DocEntry,";
+            sqlstr += " DRF1.ItemCode,";
+            sqlstr += " DRF1.Quantity";
+            sqlstr += " From ODRF";
+            sqlstr += " Inner Join DRF1 On ODRF.DocEntry= DRF1.DocEntry ";
+            sqlstr += " Where  ODRF.DocStatus = 'O'";
+            sqlstr += " and  DRF1.LinManClsd <> 'Y'";
+            sqlstr += " and  ODRF.U_GPONtfPr = '品保'";
+            sqlstr += " and  ODRF.ObjType = '20'";
+
+            dt = connenctTry.GetDataTable(sqlstr);
+            return dt;
+        }
         //P3
         public DataTable search_stockList()
         {
