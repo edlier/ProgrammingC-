@@ -165,12 +165,26 @@ namespace ConnectSAP.SAP
                 //}
             }
             #endregion
+
+
+            for (int i = List.Rows.Count - 1; i >= 0; i--)
+            {
+                if (List.Rows[i]["TotalNeed"].ToString() == "") {
+                    List.Rows.RemoveAt(i);
+                }
+            }
+
+
+
             #region 把剩下空值的部分化為0
             //把剩下空值的部分化為0
             for (int i = 0; i < List.Rows.Count; i++)
             {
-                
 
+                //if (List.Rows[i]["TotalNeed"].ToString() == "")
+                //{
+                //    List.Rows[i].Delete();
+                //}
                 if (List.Rows[i]["WH01"].ToString() == "")
                 {
                     List.Rows[i]["WH01"] = "0";
@@ -188,10 +202,7 @@ namespace ConnectSAP.SAP
                     List.Rows[i]["WH16"] = "0";
                 }
 
-                if (List.Rows[i]["TotalNeed"].ToString() == "")
-                {
-                    List.Rows[i]["TotalNeed"] = "0";
-                }
+
                 if (List.Rows[i]["QCqty"].ToString() == "")
                 {
                     List.Rows[i]["QCqty"] = "0";
@@ -215,38 +226,23 @@ namespace ConnectSAP.SAP
                 {
                     List.Rows[i]["MinLevel"] = "0";
                 }
-
-                ////計算缺料 (需求-WHO1-WHO3-WH04-WH16-QC1-QC2)
-                int lack = Convert.ToInt32(List.Rows[i]["TotalNeed"])
-                    - Convert.ToInt32(List.Rows[i]["WH01"])
-                    - Convert.ToInt32(List.Rows[i]["WH03"])
-                    - Convert.ToInt32(List.Rows[i]["WH04"])
-                    - Convert.ToInt32(List.Rows[i]["WH16"])
-                    - Convert.ToInt32(List.Rows[i]["QCqty"])
-                    - Convert.ToInt32(List.Rows[i]["QCqty2"]);
-
-                List.Rows[i]["LackMaterial"] = lack;
-
-
                 //把30天填入後才能做運此運算.....
                 CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
                 List.Rows[i]["BdAMult"] = (String.Format(CultureInfo.InvariantCulture, "{0:0.##}", (Convert.ToDouble(List.Rows[i]["MinLevel"]) / Convert.ToDouble(List.Rows[i]["LeadTime"]) * 30)));	
 
+                  ////計算缺料 (需求-WHO1-WHO3-WH04-WH16-QC1-QC2)
+                double lack = Convert.ToDouble(List.Rows[i]["BdAMult"])
+                    - Convert.ToDouble(List.Rows[i]["WH01"])
+                    - Convert.ToDouble(List.Rows[i]["WH03"])
+                    - Convert.ToDouble(List.Rows[i]["WH04"])
+                    - Convert.ToDouble(List.Rows[i]["WH16"])
+                    - Convert.ToDouble(List.Rows[i]["QCqty"])
+                    - Convert.ToDouble(List.Rows[i]["QCqty2"]);
+
+                List.Rows[i]["LackMaterial"] = lack;
             }
             #endregion
 
-            ////把30天填入後才能做運此運算.....
-            //for (int i = 0; i < List.Rows.Count; i++)
-            //{
-
-            //}
-
-
-            //Grid_test.DataSource = QCList2;
-            //Grid_test.DataBind();
-
-            //grid_stock.DataSource = stockList;
-            //grid_stock.DataBind();
 
             List.DefaultView.Sort = "ItemCode asc";
             grid_CbineLst.DataSource = List;
