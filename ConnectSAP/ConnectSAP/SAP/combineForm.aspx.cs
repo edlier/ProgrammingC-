@@ -5,11 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-// 使用 NPOI 函式
-//using NPOI.HSSF.UserModel;
-//using NPOI.XSSF.UserModel;
-//using NPOI;
-// MemorySteam 使用
 using System.IO;
 using System.Web.UI.HtmlControls;
 using System.Globalization;
@@ -166,15 +161,14 @@ namespace ConnectSAP.SAP
             }
             #endregion
 
-
+            #region 移除 Total 為0
             for (int i = List.Rows.Count - 1; i >= 0; i--)
             {
                 if (List.Rows[i]["TotalNeed"].ToString() == "") {
                     List.Rows.RemoveAt(i);
                 }
             }
-
-
+            #endregion
 
             #region 把剩下空值的部分化為0
             //把剩下空值的部分化為0
@@ -239,16 +233,24 @@ namespace ConnectSAP.SAP
                     - Convert.ToDouble(List.Rows[i]["QCqty"])
                     - Convert.ToDouble(List.Rows[i]["QCqty2"]);
 
-                List.Rows[i]["LackMaterial"] = lack;
+                List.Rows[i]["LackMaterial"] = (int)(lack);
+            }
+            #endregion
+
+            #region 移除缺料小於零
+            for (int i = List.Rows.Count - 1; i >= 0; i--)
+            {
+                if (Convert.ToInt32(List.Rows[i]["LackMaterial"]) <=0)
+                {
+                    List.Rows.RemoveAt(i);
+                }
             }
             #endregion
 
 
             List.DefaultView.Sort = "ItemCode asc";
             grid_CbineLst.DataSource = List;
-            grid_CbineLst.DataBind();
-
-            
+            grid_CbineLst.DataBind();            
             
         }
 
@@ -284,54 +286,9 @@ namespace ConnectSAP.SAP
             Response.Write(sw.ToString());
             Response.End();
         }
-        //private void ExportToFile(GridView gv)
-        //{
 
 
-        //    #region 建立 WorkBook 及試算表
-        //    HSSFWorkbook workbook = new HSSFWorkbook();
-        //    MemoryStream ms = new MemoryStream();
-        //    HSSFSheet mySheet1 = (HSSFSheet)workbook.CreateSheet("Combine.xlsx"); 
-        //    #endregion
 
-        //    #region 建立 sheet 內容
-        //    // 建立 sheet 內容
-        //    HSSFRow rowHeader = (HSSFRow)mySheet1.CreateRow(0);
-        //    // 建立 Header
-        //    // 不用 GridView.Columns.Count，因為用 AutoGenerateColumns 會抓不到
-        //    for (int i = 0, iCount = gv.HeaderRow.Cells.Count; i < iCount; i++)
-        //    {
-        //        //若有啟用排序，Header會變成 LinkButton
-        //        LinkButton lb = null;
-        //        if (gv.HeaderRow.Cells[i].Controls.Count > 0)
-        //            lb = gv.HeaderRow.Cells[i].Controls[0] as LinkButton;
-        //        string strValue = (lb != null) ? lb.Text : gv.HeaderRow.Cells[i].Text;
-
-        //        rowHeader.CreateCell(i).SetCellValue(strValue.Replace("&nbsp;", "").Trim());
-        //    }
-        //    // 建立 DataRow
-        //    for (int i = 0, iCount = gv.Rows.Count; i < iCount; i++)
-        //    {
-        //        HSSFRow rowItem = (HSSFRow)mySheet1.CreateRow(i + 1);
-        //        for (int j = 0, jCount = gv.HeaderRow.Cells.Count; j < jCount; j++)
-        //        {
-        //            rowItem.CreateCell(j).SetCellValue(gv.Rows[i].Cells[j].Text.Replace("&nbsp;", "").Trim());
-        //        }
-        //    }
-        //    #endregion
-
-        //    #region 匯出
-        //    workbook.Write(ms);
-        //    Response.AddHeader("Content-Disposition", string.Format("attachment; filename=Combine.xls"));
-        //    Response.BinaryWrite(ms.ToArray());
-        //    #endregion
-
-        //    #region 善後
-        //    workbook = null;
-        //    ms.Close();
-        //    ms.Dispose();
-        //    #endregion
-        //}
 
     }
 }

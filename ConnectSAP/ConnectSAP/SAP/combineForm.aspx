@@ -21,7 +21,7 @@
                 <asp:BoundField DataField="WH16" HeaderText="WH16" DataFormatString="{0:0.##}"/>                
                 <asp:BoundField DataField="QCqty" HeaderText="QC 005" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="QCqty2" HeaderText="QC 006" DataFormatString="{0:0.##}"/>
-                <asp:BoundField DataField="LackMaterial" HeaderText="缺料數量" DataFormatString="{0:0.##}"/>
+                <asp:BoundField DataField="LackMaterial" HeaderText="月缺料數量" DataFormatString="{0:0.##}"/>
 
                 <asp:BoundField DataField="MinOrdrQty" HeaderText="最小訂購" DataFormatString="{0:G2}"/>
                 <asp:BoundField DataField="LeadTime" HeaderText="前置時間" DataFormatString="{0:G2}"/>
