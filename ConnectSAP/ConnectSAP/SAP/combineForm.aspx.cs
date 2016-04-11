@@ -27,12 +27,12 @@ namespace ConnectSAP.SAP
             column = new DataColumn();
             List.Columns.Add("QCqty"); 
             List.Columns.Add("QCqty2");
-            List.Columns.Add("MinOrdrQty");
+            //List.Columns.Add("MinOrdrQty");
             List.Columns.Add("LeadTime");
             List.Columns.Add("MinLevel");
             List.Columns.Add("BdAMult");
             List.Columns.Add("LackMaterial");
-            
+            List.Columns.Add("EndDate");
             #region QCList1 先行處理
             for (int i = 0; i < QCList.Rows.Count; i++)
             {
@@ -130,7 +130,7 @@ namespace ConnectSAP.SAP
                     dr = List.NewRow();
                     //int qtyFormat = Convert.ToInt32(QCList.Rows[i]["Quantity"]);
                     dr["ItemCode"] = stockList.Rows[i]["ItemCode"];
-                    dr["MinOrdrQty"] = Convert.ToInt32(stockList.Rows[i]["MinOrdrQty"]);
+                    //dr["MinOrdrQty"] = Convert.ToInt32(stockList.Rows[i]["MinOrdrQty"]);
                     dr["LeadTime"] = stockList.Rows[i]["LeadTime"];
                     dr["MinLevel"] = Convert.ToInt32(stockList.Rows[i]["MinLevel"]);
                     
@@ -145,7 +145,7 @@ namespace ConnectSAP.SAP
                     {
                         if (List.Rows[y]["ItemCode"].ToString() == stockList.Rows[i]["ItemCode"].ToString())
                         {
-                            List.Rows[y]["MinOrdrQty"] = Convert.ToInt32(stockList.Rows[i]["MinOrdrQty"]);
+                            //List.Rows[y]["MinOrdrQty"] = Convert.ToInt32(stockList.Rows[i]["MinOrdrQty"]);
                             List.Rows[y]["LeadTime"] = stockList.Rows[i]["LeadTime"];
                             List.Rows[y]["MinLevel"] = Convert.ToInt32(stockList.Rows[i]["MinLevel"]);
                             break;
@@ -170,8 +170,7 @@ namespace ConnectSAP.SAP
             }
             #endregion
 
-            #region 把剩下空值的部分化為0
-            //把剩下空值的部分化為0
+
             for (int i = 0; i < List.Rows.Count; i++)
             {
 
@@ -179,6 +178,9 @@ namespace ConnectSAP.SAP
                 //{
                 //    List.Rows[i].Delete();
                 //}
+
+                #region 把剩下空值的部分化為0
+                //把剩下空值的部分化為0
                 if (List.Rows[i]["WH01"].ToString() == "")
                 {
                     List.Rows[i]["WH01"] = "0";
@@ -205,26 +207,28 @@ namespace ConnectSAP.SAP
                 {
                     List.Rows[i]["QCqty2"] = "0";
                 }
-                if (List.Rows[i]["MinOrdrQty"].ToString() == "")
-                {
-                    List.Rows[i]["MinOrdrQty"] = "0";
-                }
+                //if (List.Rows[i]["MinOrdrQty"].ToString() == "")
+                //{
+                //    List.Rows[i]["MinOrdrQty"] = "0";
+                //}
 
                 //Lead Time若為空值 則為30天
                 if (List.Rows[i]["LeadTime"].ToString() == "")
                 {
                     List.Rows[i]["LeadTime"] = "30";
                 }
-                //MinOrdrQty  若為空值 則為0
+
                 if (List.Rows[i]["MinLevel"].ToString() == "")
                 {
                     List.Rows[i]["MinLevel"] = "0";
                 }
+                #endregion
+
                 //把30天填入後才能做運此運算.....
                 CultureInfo elGR = CultureInfo.CreateSpecificCulture("el-GR");
                 List.Rows[i]["BdAMult"] = (String.Format(CultureInfo.InvariantCulture, "{0:0.##}", (Convert.ToDouble(List.Rows[i]["MinLevel"]) / Convert.ToDouble(List.Rows[i]["LeadTime"]) * 30)));	
 
-                  ////計算缺料 (需求-WHO1-WHO3-WH04-WH16-QC1-QC2)
+                ////計算缺料 (需求-WHO1-WHO3-WH04-WH16-QC1-QC2)
                 double lack = Convert.ToDouble(List.Rows[i]["BdAMult"])
                     - Convert.ToDouble(List.Rows[i]["WH01"])
                     - Convert.ToDouble(List.Rows[i]["WH03"])
@@ -234,9 +238,26 @@ namespace ConnectSAP.SAP
                     - Convert.ToDouble(List.Rows[i]["QCqty2"]);
 
                 List.Rows[i]["LackMaterial"] = (int)(lack);
-            }
-            #endregion
 
+                //日用量
+                int dayUsed = Convert.ToInt32(List.Rows[i]["MinLevel"]) / (Convert.ToInt32(List.Rows[i]["LeadTime"])+14);
+                //QC檢驗期用量
+                int qcVF_count = dayUsed * 14;
+
+                if (dayUsed > 0)
+                {
+                    int addDateToEnd = ((int)lack - qcVF_count) / dayUsed;
+                    List.Rows[i]["EndDate"] = DateTime.Now.AddDays(addDateToEnd).ToString("MM-dd-yyyy");
+                }
+                else
+                {
+                    List.Rows[i]["EndDate"] = DateTime.Now.ToString("MM-dd-yyyy");
+                }
+                
+            }
+           
+
+            
             #region 移除缺料小於零
             for (int i = List.Rows.Count - 1; i >= 0; i--)
             {

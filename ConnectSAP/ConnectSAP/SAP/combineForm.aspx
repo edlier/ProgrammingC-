@@ -23,11 +23,11 @@
                 <asp:BoundField DataField="QCqty2" HeaderText="QC 006" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="LackMaterial" HeaderText="月缺料數量" DataFormatString="{0:0.##}"/>
 
-                <asp:BoundField DataField="MinOrdrQty" HeaderText="最小訂購" DataFormatString="{0:G2}"/>
+                <%--<asp:BoundField DataField="MinOrdrQty" HeaderText="最小訂購" DataFormatString="{0:G2}"/>--%>
                 <asp:BoundField DataField="LeadTime" HeaderText="前置時間" DataFormatString="{0:G2}"/>
                 <asp:BoundField DataField="MinLevel" HeaderText="最低庫存量" DataFormatString="{0:F}"/>
                 <asp:BoundField DataField="BdAMult" HeaderText="月用量(B/A)*30" DataFormatString="{0:F}"/>
-
+                <asp:BoundField DataField="EndDate" HeaderText="到期日"/>
             </Columns>
         </asp:GridView>
         <asp:GridView ID="Grid_test" runat="server"></asp:GridView>
