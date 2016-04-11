@@ -14,6 +14,7 @@
         <asp:GridView ID="grid_CbineLst" runat="server" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField DataField="ItemCode" HeaderText="ItemCode"/>
+                <asp:BoundField DataField="ItemName" HeaderText="ItemName"/>
                 <asp:BoundField DataField="TotalNeed" HeaderText="需求總數" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="WH01" HeaderText="WH01" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="WH03" HeaderText="WH03" DataFormatString="{0:0.##}"/>

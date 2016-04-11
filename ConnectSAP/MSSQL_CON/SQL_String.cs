@@ -16,7 +16,7 @@ namespace MSSQL_CON
             DataTable dt = new DataTable();
 
             string sqlstr = "";
-            sqlstr += " Select T1.ItemCode,A.WH01,SUM(T1.PlannedQty)-SUM(T1.IssuedQty) as 'TotalNeed',B.WH03,C.WH04,F.WH16";
+            sqlstr += " Select T1.ItemCode,TM.ItemName,A.WH01,SUM(T1.PlannedQty)-SUM(T1.IssuedQty) as 'TotalNeed',B.WH03,C.WH04,F.WH16";
 
             sqlstr += " From WOR1 T1 ";
 
@@ -38,8 +38,9 @@ namespace MSSQL_CON
             sqlstr += " Inner Join OITM TM On T1.ItemCode = TM.ItemCode ";
 
             sqlstr += " Where T0.Status not in  ('C','L')";
+            sqlstr += "  and ISNULL(T0.U_SaleType,'')  <> 'OUT'";
             //sqlstr += " --and (T0.PostDate  <= '20140506' or '' = '20140506')";
-            sqlstr += " Group By T1.ItemCode,A.WH01,B.WH03,C.WH04,F.WH16";
+            sqlstr += " Group By T1.ItemCode,TM.ItemName,A.WH01,B.WH03,C.WH04,F.WH16";
             sqlstr += " Having SUM(T1.PlannedQty)-SUM(T1.IssuedQty)-(Select SUM(TW.OnHand) From OITW TW Where TW.ItemCode = T1.ItemCode and TW.WhsCode in ('01','03','04','07','11','16')) > 0";
 
             sqlstr += " Order By";
