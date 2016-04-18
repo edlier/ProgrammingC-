@@ -1,0 +1,192 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="site.master.cs" Inherits="misSystem.site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="CssFile/styles.css" rel="stylesheet" />
+    <link href="picture/icon.jpg" rel="icon" type="image/jpg"/>
+    <link href="CssFile/btn.css" rel="stylesheet" />
+    <link href="CssFile/position.css" rel="stylesheet" />
+    <link href="CssFile/tittle.css" rel="stylesheet" />
+    <link href="CssFile/tb.css" rel="stylesheet" />
+    <link href="CssFile/tb.css" rel="stylesheet" />
+    <link href="CssFile/color.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <%--<img src="~/picture/mainMIS.jpg" class="mainJPG"/>--%>
+       <a href=<%= ResolveClientUrl("Default.aspx") %>><img src="<%=ResolveClientUrl("picture/mainMIS.jpg")%>"/></a>
+        <div id='cssmenu'>
+            <ul>
+                <%--       PD&E--%>
+                <li class='active has-sub'><a href=''><span>PD&E</span></a>
+                    <ul>
+                        <li class='has-sub'><a href='#'><span>wwwww</span></a>
+                            <ul>
+                                <li><a href=""><span>FORM</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                                <li class='last'><a href='#'><span>aaa</span></a></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'><a href='#'><span>aa</span></a>
+                            <ul>
+                                <li><a href=""><span>aaaaa</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <%--       Service--%>
+                <li class='active has-sub'><a href=''><span>Service</span></a>
+                    <ul>
+                        <li class='has-sub'><a href='#'><span>wwwww</span></a>
+                            <ul>
+                                <li><a href=""><span>FORM</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                                <li class='last'><a href='#'><span>aaa</span></a></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'><a href='#'><span>aa</span></a>
+                            <ul>
+                                <li><a href=""><span>aaaaa</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <%--       Administration--%>
+                <li class='active has-sub'><a href=''><span>Administration</span></a>
+                    <ul>
+                        <li class='has-sub'><a href='#'><span>wwwww</span></a>
+                            <ul>
+                                <li><a href=""><span>FORM</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                                <li class='last'><a href='#'><span>aaa</span></a></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'><a href='#'><span>aa</span></a>
+                            <ul>
+                                <li><a href=""><span>aaaaa</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                                <%--       QC--%>
+                <li class='active has-sub'><a href='#'><span>QC</span></a>                    
+                    <ul>
+                        <li class="last"><a href=<%= ResolveClientUrl("QC/QC_sampling.aspx") %>>Sampling</a></li>
+                        <li class="last"><a href=<%= ResolveClientUrl("QC/QC_index.aspx") %>><span>QC</span></a></li>
+                    </ul>                
+                </li>
+                <%--       PCMC--%>
+                <li class='active has-sub'><a href=''><span>PCMC</span></a>
+                    <ul>
+                        <li class='has-sub'><a href='#'><span>wwwww</span></a>
+                            <ul>
+                                <li><a href=""><span>FORM</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                                <li class='last'><a href='#'><span>aaa</span></a></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'><a href='#'><span>aa</span></a>
+                            <ul>
+                                <li><a href=""><span>aaaaa</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <%--       Production--%>
+                <li class='active has-sub'><a href=''><span>Production</span></a>
+                    <ul>
+                        <li class='has-sub'><a href='#'><span>wwwww</span></a>
+                            <ul>
+                                <li><a href=""><span>FORM</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                                <li class='last'><a href='#'><span>aaa</span></a></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'><a href='#'><span>aa</span></a>
+                            <ul>
+                                <li><a href=""><span>aaaaa</span></a></li>
+                                <li class='last'><a href='#'><span>aa</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </li>
+                <%--       Regulatory--%>
+                <li class='active has-sub'><a href='regulatory/regulatory_main.aspx'><span>Regulatory</span></a>
+                    <%--<li><a href='regulatory/regulatory_main.aspx'><span>法規部 (Regulatory)</span></a>--%>
+                    <ul>
+                        <li class='has-sub'><a href='#'><span>Fill form</span></a>
+                            <ul>
+                                <li><a href="regulatory/regulatory_form_DCR.aspx"><span>DCR FORM</span></a></li>
+                                <li class='last'><a href='#'><span>會辦單</span></a></li>
+                                <li class='last'><a href='#'><span>工程變更通知單</span></a></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'><a href='#'><span>表單流程</span></a>
+                            <ul>
+                                <li><a href="regulatory/flow/regulatory_flow_DCR.aspx"><span>DCR</span></a></li>
+                                <li class='last'><a href='#'><span>ECR</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </li>
+
+                <%--       Check--%>
+                <li class='active has-sub'><a href='#'><span>Check</span></a>
+                    <ul>
+                        <li class='has-sub'><a href='#'><span>Product 1</span></a>
+                            <ul>
+                                <li><a href='#'><span>Sub Product</span></a></li>
+                                <li class='last'><a href='#'><span>Sub Product</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <%--       MIS--%>
+                <% 
+                    if (Session["auDep11"] != null)
+                    {%>
+                
+                <%--<li class='active has-sub'><a href='MIS/MIS_Main.aspx'><span>MIS</span></a>--%>
+
+                <li class='active has-sub'><a href=<%= ResolveClientUrl("MIS/MIS_Main.aspx") %>><span>MIS</span></a>
+                    <ul>
+                        <li class='has-sub'><a href='#'><span>User</span></a>
+                            <ul>
+                                <li class='last'><a href=<%= ResolveClientUrl("MIS/User/UserList.aspx") %>><span>User List</span></a></li>
+                                <li class='last'><a href=<%= ResolveClientUrl("MIS/User/AddNewUser.aspx") %>><span>Add New</span></a></li>
+                                <li class='last'><a href='#'><span>Login Log</span></a></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'><a href='#'><span>Manager</span></a>
+                            <ul>
+                                <li class='last'><a href=<%= ResolveClientUrl("MIS/manager/AddNewManager.aspx") %>><span>Add Manager</span></a></li>
+                                <li class='last'><a href=<%= ResolveClientUrl("MIS/manager/ManagerList.aspx") %>><span>Manager List</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <%} %>
+                <li class='last'><a href=<%= ResolveClientUrl("account/logout.aspx")%>><span>Logout</span></a></li>
+            </ul>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

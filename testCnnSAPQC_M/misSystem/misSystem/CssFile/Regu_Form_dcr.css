@@ -1,0 +1,26 @@
+﻿#dcr_middle{
+    position:absolute;
+    margin-left:50%;
+    margin-top:80px;
+    left:-400px;
+}
+
+#dcrFormTittle{
+    font-weight:bold;
+    font-size:28px;
+    color:blue;
+}
+
+#dcrFlowleft{
+    position:absolute;
+    margin-left:50%;
+    margin-top:80px;
+    left:-400px;
+}
+
+#dcrFlowRight{
+    position:absolute;
+    margin-left:50%;
+    margin-top:80px;
+    left:-80px;
+}

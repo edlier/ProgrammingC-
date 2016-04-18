@@ -1,0 +1,20 @@
+﻿.Lp600_Tm5_gradient40px{
+    position: absolute;
+    margin-top:-400px;
+    margin-left:600px;
+    font-family: Georgia;
+    font-size:40px;
+    background: -webkit-linear-gradient(top,#fd0b58 0,#a32b68 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+	}
+
+
+.gradient{
+	font-family: Georgia;
+    font-size:70px;
+	background: -webkit-linear-gradient(top,#fd0b58 0,#a32b68 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}

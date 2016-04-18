@@ -1,0 +1,5 @@
+C:\Users\cocohuang\Desktop\coding File\ClassLibrary\ClassLibrary\bin\Debug\ClassLibrary.dll
+C:\Users\cocohuang\Desktop\coding File\ClassLibrary\ClassLibrary\bin\Debug\ClassLibrary.pdb
+C:\Users\cocohuang\Desktop\coding File\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.dll
+C:\Users\cocohuang\Desktop\coding File\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.pdb
+C:\Users\cocohuang\Desktop\coding File\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.csprojResolveAssemblyReference.cache

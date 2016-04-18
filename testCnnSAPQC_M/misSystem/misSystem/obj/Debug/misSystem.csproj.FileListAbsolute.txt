@@ -1,0 +1,34 @@
+C:\Users\User\Desktop\misSystem\misSystem\bin\misSystem.dll.config
+C:\Users\User\Desktop\misSystem\misSystem\bin\misSystem.dll
+C:\Users\User\Desktop\misSystem\misSystem\bin\misSystem.pdb
+C:\Users\User\Desktop\misSystem\misSystem\obj\Debug\misSystem.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\misSystem\misSystem\obj\Debug\misSystem.dll
+C:\Users\User\Desktop\misSystem\misSystem\obj\Debug\misSystem.pdb
+C:\Users\User\Desktop\CodeFile\misSystem\misSystem\bin\misSystem.dll.config
+C:\Users\User\Desktop\CodeFile\misSystem\misSystem\bin\misSystem.dll
+C:\Users\User\Desktop\CodeFile\misSystem\misSystem\bin\misSystem.pdb
+C:\Users\User\Desktop\CodeFile\misSystem\misSystem\obj\Debug\misSystem.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\CodeFile\misSystem\misSystem\obj\Debug\misSystem.dll
+C:\Users\User\Desktop\CodeFile\misSystem\misSystem\obj\Debug\misSystem.pdb
+C:\Users\User\Desktop\CodeFile\misSystem\misSystem\bin\MisSystem_ClassLibrary.dll
+C:\Users\User\Desktop\CodeFile\misSystem\misSystem\bin\MisSystem_ClassLibrary.pdb
+C:\Users\cocohuang\Desktop\coding File\misSystem\misSystem\bin\misSystem.dll.config
+C:\Users\cocohuang\Desktop\coding File\misSystem\misSystem\bin\misSystem.dll
+C:\Users\cocohuang\Desktop\coding File\misSystem\misSystem\bin\misSystem.pdb
+C:\Users\cocohuang\Desktop\coding File\misSystem\misSystem\bin\MisSystem_ClassLibrary.dll
+C:\Users\cocohuang\Desktop\coding File\misSystem\misSystem\bin\Newtonsoft.Json.dll
+C:\Users\cocohuang\Desktop\coding File\misSystem\misSystem\bin\MisSystem_ClassLibrary.pdb
+C:\Users\cocohuang\Desktop\coding File\misSystem\misSystem\obj\Debug\misSystem.csprojResolveAssemblyReference.cache
+C:\Users\cocohuang\Desktop\coding File\misSystem\misSystem\obj\Debug\misSystem.dll
+C:\Users\cocohuang\Desktop\coding File\misSystem\misSystem\obj\Debug\misSystem.pdb
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\bin\misSystem.dll.config
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\bin\misSystem.dll
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\bin\misSystem.pdb
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\bin\MisSystem_ClassLibrary.dll
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\bin\MSSQL_CON.dll
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\bin\Newtonsoft.Json.dll
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\bin\MisSystem_ClassLibrary.pdb
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\bin\MSSQL_CON.pdb
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\obj\Debug\misSystem.csprojResolveAssemblyReference.cache
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\obj\Debug\misSystem.dll
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\misSystem\misSystem\obj\Debug\misSystem.pdb
