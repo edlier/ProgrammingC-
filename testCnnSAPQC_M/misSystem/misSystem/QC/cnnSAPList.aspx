@@ -7,7 +7,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="Lp600_Tm5_gradient40px">IQC - Validation List</div>
     <div class="Lp300-Tm350" style="font-size: 16px; font-family: Georgia;">
-        <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="450px">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
             BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" Width="100%" >
             <AlternatingRowStyle BackColor="PaleGoldenrod" />
@@ -21,7 +20,7 @@
                 <asp:BoundField DataField="Dscription" HeaderText="Dscription" ItemStyle-Width="400px">
                     <ItemStyle Width=""></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField DataField="Processer" HeaderText="Processer" ItemStyle-Width="280px">
+                <asp:BoundField DataField="Operator" HeaderText="Operator" ItemStyle-Width="280px">
                     <ItemStyle Width=""></ItemStyle>
                 </asp:BoundField>
                 <asp:BoundField DataField="DocDate2" HeaderText="DocDate" DataFormatString="{0:yyyy-MM-dd}"/>
@@ -40,7 +39,21 @@
             <SortedDescendingCellStyle BackColor="#E1DB9C" />
             <SortedDescendingHeaderStyle BackColor="#C2A47B" />
         </asp:GridView>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+        <script src="../scripts/gridviewScroll.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                gridviewScroll();
+            });
 
-        </asp:Panel>
+            function gridviewScroll() {
+                $('#<%=GridView1.ClientID%>').gridviewScroll({
+            width: 1200,
+            height: 600
+        });
+    }
+        </script>
+
     </div>
 </asp:Content>
