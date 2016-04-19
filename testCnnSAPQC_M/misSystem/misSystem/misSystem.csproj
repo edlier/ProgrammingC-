@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CssFile\color.css" />
+    <Content Include="CssFile\GridviewScroll.css" />
     <Content Include="Default.aspx" />
     <Content Include="MIS\Manager\AddNewManager.aspx" />
     <Content Include="MIS\Manager\ManagerList.aspx" />
@@ -71,12 +72,19 @@
     <Content Include="MIS\User\UserDetail.aspx" />
     <Content Include="MIS\User\UserList.aspx" />
     <Content Include="picture\icon.jpg" />
+    <Content Include="picture\scroll\arrowhl.png" />
+    <Content Include="picture\scroll\arrowhr.png" />
+    <Content Include="picture\scroll\arrowvb.png" />
+    <Content Include="picture\scroll\arrowvt.png" />
     <Content Include="QC\cnnSAPList.aspx" />
     <Content Include="QC\jquery-2.1.4.min.js" />
     <Content Include="QC\QC_index.aspx" />
     <Content Include="QC\QC_inprocess.aspx" />
     <Content Include="QC\QC_sampling.aspx" />
     <Content Include="QC\QC_set_sampling.aspx" />
+    <Content Include="scripts\1.9.0jquery.min.js.js" />
+    <Content Include="scripts\1.9.1jquery-ui.min.js" />
+    <Content Include="scripts\gridviewScroll.min.js" />
     <Content Include="site.Master" />
     <Content Include="MIS\MIS.master" />
     <None Include="Web.Debug.config">
@@ -275,7 +283,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="regulatory\form\" />
-    <Folder Include="scripts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\MisSystem_ClassLibrary\MisSystem_ClassLibrary\MisSystem_ClassLibrary.csproj">

@@ -13,6 +13,15 @@ namespace misSystem.QC {
     public partial class cnnSAPList {
         
         /// <summary>
+        /// Panel1 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
         /// GridView1 控制項。
         /// </summary>
         /// <remarks>
