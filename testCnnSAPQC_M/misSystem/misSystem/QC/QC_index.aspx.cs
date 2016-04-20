@@ -159,7 +159,10 @@ namespace misSystem.QC
                 Sampling = ((Label)r.FindControl("sampling_lab")).Text;
 
             //create json string
-            var qc_detail_json = "{'Id':'" + Id + "','SN':'" + sn + "','PartNo':'" + PartNo + "','ProcessNo':'" + ProcessNo + "','ProcessType':'" + ProcessType + "','Catalogue':'" + Catalogue + "','ItemName':'" + ItemName + "','Vendor':'" + Vendor + "','ManuBy':'" + ManuBy + "','Qty':'" + Qty + "','Item':'" + Item + "','Sampling':'" + Sampling + "'}";
+            var qc_detail_json = "{'Id':'" + Id + "','SN':'" + sn + "','PartNo':'" + PartNo 
+                + "','ProcessNo':'" + ProcessNo + "','ProcessType':'" + ProcessType + "','Catalogue':'" 
+                + Catalogue + "','ItemName':'" + ItemName + "','Vendor':'" + Vendor + "','ManuBy':'" 
+                + ManuBy + "','Qty':'" + Qty + "','Item':'" + Item + "','Sampling':'" + Sampling + "'}";
             dynamic json = Newtonsoft.Json.Linq.JValue.Parse(qc_detail_json);
             Session["qc_detail"] = json;
             Response.Redirect("QC_inprocess.aspx");

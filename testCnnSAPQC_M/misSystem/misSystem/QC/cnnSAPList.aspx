@@ -3,12 +3,33 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CssFile/GridviewScroll.css" rel="stylesheet" />
 
+
+    <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>--%>
+
+        <script src="../scripts/1.8.2-jquery.min.js"></script>
+        <script src="../scripts/1.9.1jquery-ui.min.js"></script>
+        <script src="../scripts/gridviewScroll.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                gridviewScroll();
+            });
+
+            function gridviewScroll() {
+                $('#<%=GridView1.ClientID%>').gridviewScroll({
+                    width: 1200,
+                    height: 600
+                });
+            }
+        </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="Lp600_Tm5_gradient40px">IQC - Validation List</div>
     <div class="Lp300-Tm350" style="font-size: 16px; font-family: Georgia;">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-            BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" Width="100%" >
+            BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" 
+            CellPadding="2" ForeColor="Black" GridLines="None" Width="100%" >
+
             <AlternatingRowStyle BackColor="PaleGoldenrod" />
             <Columns>
                 <%--<asp:BoundField DataField="DocEntry" HeaderText="內部號碼" />--%>
@@ -23,9 +44,20 @@
                 <asp:BoundField DataField="Operator" HeaderText="Operator" ItemStyle-Width="280px">
                     <ItemStyle Width=""></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField DataField="DocDate2" HeaderText="DocDate" DataFormatString="{0:yyyy-MM-dd}"/>
-                <asp:BoundField DataField="status2" HeaderText="status" />
-
+                <asp:BoundField DataField="DocDate2" HeaderText="DocDate" DataFormatString="{0:yyyy-MM-dd}" />
+                <%--<asp:BoundField DataField="status2" HeaderText="status" />--%>
+                <asp:TemplateField HeaderText="Status">
+                    <ItemTemplate>
+                        <asp:Label ID="status" runat="server" Text='<%# Eval("status2") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Btn">
+                    <ItemTemplate>
+                        <a href="editEmployeeDetail?id=<%# Eval("id") %>">
+                            <asp:Button ID="btn_start" runat="server" Text="" />
+                        </a>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             <HeaderStyle CssClass="GridviewScrollHeader" />
             <RowStyle CssClass="GridviewScrollItem" />
@@ -39,21 +71,7 @@
             <SortedDescendingCellStyle BackColor="#E1DB9C" />
             <SortedDescendingHeaderStyle BackColor="#C2A47B" />
         </asp:GridView>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-        <script src="../scripts/gridviewScroll.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                gridviewScroll();
-            });
 
-            function gridviewScroll() {
-                $('#<%=GridView1.ClientID%>').gridviewScroll({
-            width: 1200,
-            height: 600
-        });
-    }
-        </script>
 
     </div>
 </asp:Content>

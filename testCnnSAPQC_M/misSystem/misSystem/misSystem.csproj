@@ -82,6 +82,7 @@
     <Content Include="QC\QC_inprocess.aspx" />
     <Content Include="QC\QC_sampling.aspx" />
     <Content Include="QC\QC_set_sampling.aspx" />
+    <Content Include="scripts\1.8.2-jquery.min.js" />
     <Content Include="scripts\1.9.0jquery.min.js.js" />
     <Content Include="scripts\1.9.1jquery-ui.min.js" />
     <Content Include="scripts\gridviewScroll.min.js" />

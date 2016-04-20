@@ -29,8 +29,11 @@ namespace misSystem.QC
             dt_qc_missys.Columns.Add("status2");
 
 
+            //compare two Data between SAP and MySQL
+            #region MIS count < SAP count
             if (dt_qc_missys.Rows.Count < dt_qc_SAP.Rows.Count)
             {
+                
                 for (int i = 0; i < dt_qc_SAP.Rows.Count; i++)
                 {
                     //find duplicate data
@@ -63,6 +66,8 @@ namespace misSystem.QC
                 }
 
             }
+            #endregion
+            #region MIS count >= SAP count
             else if (dt_qc_missys.Rows.Count >= dt_qc_SAP.Rows.Count)
             {
                 for (int i = 0; i < dt_qc_missys.Rows.Count; i++)
@@ -100,10 +105,10 @@ namespace misSystem.QC
                     }
                 }
             }
+            #endregion
 
-
-
-
+            //Convert  time to the same format + Change the status from num to string
+            #region Convert  time + status
             for (int i = 0; i < dt_qc_missys.Rows.Count; i++)
             {
                 if (dt_qc_missys.Rows[i]["DocDate2"].ToString() == "")
@@ -115,51 +120,33 @@ namespace misSystem.QC
                     if (Convert.ToInt32(dt_qc_missys.Rows[i]["status"]) == 1)
                     {
                         dt_qc_missys.Rows[i]["status2"] = "Starting";
+
                     }
                 }
-                catch { }
+                catch {}
             }
-
-
-
-            //==========================================
-            //compare two Data between SAP and MySQL
-            //for (int i = 0; i < dt_qc_missys.Rows.Count; i++)
-            //{
-            //    //find duplicate data
-            //    string expression;
-            //    expression = " ItemCode LIKE '" + dt_qc_missys.Rows[i]["ItemCode"] 
-            //        + "' AND DocNum = " + GlobalAnnounce.db.qo(dt_qc_missys.Rows[i]["DocNum"].ToString());
-
-            //    DataRow[] foundRows;
-
-            //    // Use the Select method to find all rows matching the filter.
-            //    for (int y = 0; y < dt_qc_SAP.Rows.Count; y++)
-            //    {
-            //        foundRows = dt_qc_missys.Select(expression);
-            //        if (foundRows.Length == 0)
-            //        {
-            //            DataRow dr;
-            //            dr = dt_qc_missys.NewRow();
-
-            //            dr["DocNum"] = dt_qc_SAP.Rows[i]["DocNum"];
-            //            dr["ItemCode"] = dt_qc_SAP.Rows[i]["ItemCode"];
-            //            dr["Qty"] = dt_qc_SAP.Rows[i]["Quantity"];
-            //            dr["Dscription"] = dt_qc_SAP.Rows[i]["Dscription"];
-            //            dr["DocDate"] = dt_qc_SAP.Rows[i]["DocDate"];
-            //            //dr["Processer"] = "";
-            //            dt_qc_missys.Rows.Add(dr);
-            //        }
-            //    }
-            //}
-
-
-
-
-
+            #endregion
 
             GridView1.DataSource = dt_qc_missys;
             GridView1.DataBind();
+
+            #region Change Button's Text
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                Button b = (Button)GridView1.Rows[i].FindControl("btn_start");
+
+                if (((Label)GridView1.Rows[i].FindControl("status")).Text == "Starting")
+                {
+                    b.Text = "Start";
+                }
+                else
+                {
+                    b.Text = "Fill";
+                }
+            }
+            #endregion
+
         }
+
     }
 }
