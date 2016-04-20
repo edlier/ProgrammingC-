@@ -77,6 +77,7 @@
     <Content Include="picture\scroll\arrowvb.png" />
     <Content Include="picture\scroll\arrowvt.png" />
     <Content Include="QC\cnnSAPList.aspx" />
+    <Content Include="QC\cnnSAP_List_inProcess.aspx" />
     <Content Include="QC\jquery-2.1.4.min.js" />
     <Content Include="QC\QC_index.aspx" />
     <Content Include="QC\QC_inprocess.aspx" />
@@ -206,6 +207,13 @@
     </Compile>
     <Compile Include="QC\cnnSAPList.aspx.designer.cs">
       <DependentUpon>cnnSAPList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QC\cnnSAP_List_inProcess.aspx.cs">
+      <DependentUpon>cnnSAP_List_inProcess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QC\cnnSAP_List_inProcess.aspx.designer.cs">
+      <DependentUpon>cnnSAP_List_inProcess.aspx</DependentUpon>
     </Compile>
     <Compile Include="QC\QC_index.aspx.cs">
       <DependentUpon>QC_index.aspx</DependentUpon>

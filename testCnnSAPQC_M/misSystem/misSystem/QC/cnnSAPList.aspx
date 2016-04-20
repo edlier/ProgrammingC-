@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CssFile/GridviewScroll.css" rel="stylesheet" />
 
-
     <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>--%>
 
@@ -26,7 +25,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="Lp600_Tm5_gradient40px">IQC - Validation List</div>
     <div class="Lp300-Tm350" style="font-size: 16px; font-family: Georgia;">
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
             BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" 
             CellPadding="2" ForeColor="Black" GridLines="None" Width="100%" >
 
@@ -35,30 +34,40 @@
                 <%--<asp:BoundField DataField="DocEntry" HeaderText="內部號碼" />--%>
                 <asp:BoundField DataField="DocNum" HeaderText="文件號碼" />
                 <asp:BoundField DataField="ItemCode" HeaderText="ItemCode" />
+                <asp:BoundField DataField="BaseLine" HeaderText="No" />
                 <asp:BoundField DataField="Qty" HeaderText="Qty" DataFormatString="{0:0.##}" ItemStyle-Width="50px">
                     <ItemStyle Width=""></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField DataField="Dscription" HeaderText="Dscription" ItemStyle-Width="400px">
-                    <ItemStyle Width=""></ItemStyle>
-                </asp:BoundField>
-                <asp:BoundField DataField="Operator" HeaderText="Operator" ItemStyle-Width="280px">
-                    <ItemStyle Width=""></ItemStyle>
-                </asp:BoundField>
-                <asp:BoundField DataField="DocDate2" HeaderText="DocDate" DataFormatString="{0:yyyy-MM-dd}" />
-                <%--<asp:BoundField DataField="status2" HeaderText="status" />--%>
+                <asp:TemplateField HeaderText="Btn">
+                    <ItemTemplate>
+                        <asp:Button ID="btn_start" runat="server" OnClick="btn_start_Click" CssClass="Georgia18px"/>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Status">
                     <ItemTemplate>
                         <asp:Label ID="status" runat="server" Text='<%# Eval("status2") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Btn">
-                    <ItemTemplate>
-                        <a href="editEmployeeDetail?id=<%# Eval("id") %>">
-                            <asp:Button ID="btn_start" runat="server" Text="" />
-                        </a>
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:BoundField DataField="Dscription" HeaderText="Dscription" ItemStyle-Width="400px">
+                    <ItemStyle Width=""></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="CardCode" HeaderText="CardCode" />
+                <asp:BoundField DataField="CardName" HeaderText="CardName" />
+                <asp:BoundField DataField="Operator" HeaderText="Operator" ItemStyle-Width="280px">
+                    <ItemStyle Width=""></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="DocDate2" HeaderText="DocDate" DataFormatString="{0:yyyy-MM-dd}" />
+                <%--<asp:BoundField DataField="status2" HeaderText="status" />--%>
+
+
+ 
+
             </Columns>
+
+
+
+
+
             <HeaderStyle CssClass="GridviewScrollHeader" />
             <RowStyle CssClass="GridviewScrollItem" />
             <PagerStyle CssClass="GridviewScrollPager" />
@@ -71,7 +80,6 @@
             <SortedDescendingCellStyle BackColor="#E1DB9C" />
             <SortedDescendingHeaderStyle BackColor="#C2A47B" />
         </asp:GridView>
-
-
+        
     </div>
 </asp:Content>

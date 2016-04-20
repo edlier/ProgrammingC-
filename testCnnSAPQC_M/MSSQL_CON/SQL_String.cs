@@ -115,9 +115,11 @@ namespace MSSQL_CON
             sqlstr += " DRF1.ItemCode,";
             sqlstr += " DRF1.Quantity,";
             sqlstr += " DRF1.Dscription,";
+            sqlstr += " ODRF.CardCode,";
             sqlstr += " ODRF.CardName, ";
             sqlstr += " ODRF.DocNum, ";
-            sqlstr += " ODRF.DocDate ";
+            sqlstr += " ODRF.DocDate,";
+            sqlstr += " DRF1.BaseLine ";
             //sqlstr += " OPDN.DocDate ";
             
             sqlstr += " From ODRF";
