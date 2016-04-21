@@ -134,7 +134,37 @@ namespace MSSQL_CON
             dt = connenctTry.GetDataTable(sqlstr);
             return dt;
         }
+        public DataTable search_SAP_QCwaitForValidateItem(string DocNum,string ItemCode,string BaseLine)
+        {
+            DataTable dt = new DataTable();
+            string sqlstr = "";
+            sqlstr += " Select ";
+            sqlstr += " DRF1.DocEntry,";
+            sqlstr += " DRF1.ItemCode,";
+            sqlstr += " DRF1.Quantity,";
+            sqlstr += " DRF1.Dscription,";
+            sqlstr += " ODRF.CardCode,";
+            sqlstr += " ODRF.CardName, ";
+            sqlstr += " ODRF.DocNum, ";
+            sqlstr += " ODRF.DocDate,";
+            sqlstr += " DRF1.BaseLine ";
+            //sqlstr += " OPDN.DocDate ";
 
+            sqlstr += " From ODRF";
+            sqlstr += " Inner Join DRF1 On ODRF.DocEntry= DRF1.DocEntry ";
+            //sqlstr += " Inner Join OPDN On ODRF.DocEntry= OPDN.DocEntry ";
+
+            sqlstr += " Where ODRF.DocStatus = 'O'";
+            sqlstr += " and  DRF1.LinManClsd <> 'Y'";
+            sqlstr += " and  ODRF.U_GPONtfPr = '品保'";
+            sqlstr += " and  ODRF.ObjType = '20'";
+            sqlstr += " and  ODRF.DocNum =    '" + DocNum + "' ";
+            sqlstr += " and  DRF1.ItemCode =    '" + ItemCode + "' ";
+            sqlstr += " and  DRF1.BaseLine =    '" + BaseLine + "' ";
+
+            dt = connenctTry.GetDataTable(sqlstr);
+            return dt;
+        }
 
     }
 }
