@@ -4,6 +4,5 @@ C:\Users\cocohuang\Desktop\ConnectSAP\MSSQL_CON\obj\Debug\MSSQL_CON.dll
 C:\Users\cocohuang\Desktop\ConnectSAP\MSSQL_CON\obj\Debug\MSSQL_CON.pdb
 C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MSSQL_CON\bin\Debug\MSSQL_CON.dll
 C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MSSQL_CON\bin\Debug\MSSQL_CON.pdb
-C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MSSQL_CON\obj\Debug\MSSQL_CON.csprojResolveAssemblyReference.cache
 C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MSSQL_CON\obj\Debug\MSSQL_CON.dll
 C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MSSQL_CON\obj\Debug\MSSQL_CON.pdb

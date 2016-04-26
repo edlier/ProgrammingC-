@@ -114,6 +114,17 @@ namespace misSystem.QC
                 }
                 #endregion
 
+                #region 移除  Status=2
+                for (int i = dt_qc_missys.Rows.Count - 1; i >= 0; i--)
+                {
+                    if (dt_qc_missys.Rows[i]["status"].ToString() == "2")
+                    {
+                        dt_qc_missys.Rows.RemoveAt(i);
+                    }
+                }
+                #endregion
+
+
                 //Convert  time to the same format + Change the status from num to string
                 #region Convert  time + status
                 for (int i = 0; i < dt_qc_missys.Rows.Count; i++)

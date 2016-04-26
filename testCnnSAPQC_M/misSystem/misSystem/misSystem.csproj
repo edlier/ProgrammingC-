@@ -87,6 +87,7 @@
     <Content Include="scripts\1.9.0jquery.min.js.js" />
     <Content Include="scripts\1.9.1jquery-ui.min.js" />
     <Content Include="scripts\gridviewScroll.min.js" />
+    <Content Include="scripts\jquery-1.11.2.min.js" />
     <Content Include="site.Master" />
     <Content Include="MIS\MIS.master" />
     <None Include="Web.Debug.config">

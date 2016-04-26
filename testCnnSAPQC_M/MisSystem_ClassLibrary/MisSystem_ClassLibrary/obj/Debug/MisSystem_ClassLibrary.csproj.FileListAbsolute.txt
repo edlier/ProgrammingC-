@@ -9,6 +9,6 @@ C:\Users\cocohuang\Desktop\coding File\MisSystem_ClassLibrary\MisSystem_ClassLib
 C:\Users\cocohuang\Desktop\coding File\MisSystem_ClassLibrary\MisSystem_ClassLibrary\obj\Debug\MisSystem_ClassLibrary.pdb
 C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MisSystem_ClassLibrary\MisSystem_ClassLibrary\bin\Debug\MisSystem_ClassLibrary.dll
 C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MisSystem_ClassLibrary\MisSystem_ClassLibrary\bin\Debug\MisSystem_ClassLibrary.pdb
-C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MisSystem_ClassLibrary\MisSystem_ClassLibrary\obj\Debug\MisSystem_ClassLibrary.csprojResolveAssemblyReference.cache
 C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MisSystem_ClassLibrary\MisSystem_ClassLibrary\obj\Debug\MisSystem_ClassLibrary.dll
 C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MisSystem_ClassLibrary\MisSystem_ClassLibrary\obj\Debug\MisSystem_ClassLibrary.pdb
+C:\Users\cocohuang\Desktop\testCnnSAPQC_M\MisSystem_ClassLibrary\MisSystem_ClassLibrary\obj\Debug\MisSystem_ClassLibrary.csprojResolveAssemblyReference.cache
