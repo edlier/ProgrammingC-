@@ -27,6 +27,18 @@ namespace MisSystem_ClassLibrary
             dt = publicNewClass.mydb.GetDataTable(sqlstr);
             return dt;
         }
+        public DataTable search_mySQL_QCValidateItem(string DocNum, string ItemCode, string BaseLine)
+        {
+            DataTable dt = new DataTable();
+            string sqlstr = "";
+            sqlstr += " Select id from qc_savesapdata where DocNum=" + publicNewClass.mydb.qo(DocNum) +
+                " AND  ItemCode = " + publicNewClass.mydb.qo(ItemCode) +
+                " AND  BaseLine = " + publicNewClass.mydb.qo(BaseLine);
+
+            dt = publicNewClass.mydb.GetDataTable(sqlstr);
+            return dt;
+        }
+        
 
 
         //  Insert QC data from SAP to MySQL

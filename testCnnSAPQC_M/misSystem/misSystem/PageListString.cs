@@ -21,11 +21,14 @@ namespace misSystem
         public static string ManagerList = "ManagerList.aspx";
         public static string AddNewManager = "AddNewManager.aspx";
 
+        public static string cnnSAP_List = "cnnSAPList.aspx";
+
         //      --路徑
         public static string MIS = "MIS";
         public static string Manager = "Manager";
         public static string User = "User";
         public static string dotdotSlash = "../";
+        public static string QC = "QC";
         
 
         

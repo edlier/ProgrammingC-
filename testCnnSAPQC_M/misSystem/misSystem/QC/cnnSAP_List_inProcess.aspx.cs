@@ -11,16 +11,22 @@ namespace misSystem.QC
     {
         DataTable dt_qc_SAP;
         string status;
+        string DocNum;
+        string ItemCode;
+        string BaseLine;
         protected void Page_Load(object sender, EventArgs e)
         {
 
             //Read URL Data
-            string DocNum = Request.QueryString["DocNum"];
-            string ItemCode = Request.QueryString["ItemCode"];
-            string BaseLine = Request.QueryString["BaseLine"];
+            DocNum = Request.QueryString["DocNum"];
+            ItemCode = Request.QueryString["ItemCode"];
+            BaseLine = Request.QueryString["BaseLine"];
             status = Request.QueryString["status"];
             dt_qc_SAP = GlobalAnnounce.SQL_String.search_SAP_QCwaitForValidateItem(DocNum, ItemCode, BaseLine);
-
+            if (dt_qc_SAP.Rows.Count==0)
+            {
+                Response.Write("<script>alert('Wrong URL! ');location.href='cnnSAPList.aspx';</script>");
+            }
             if (!IsPostBack)
             {
                 //若資料為尚未存在MySQL 資料庫的資料
@@ -47,10 +53,15 @@ namespace misSystem.QC
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Start Validation ! Please check the Quantity First!');", true);
 
-            //Check Duplicate Data in MySQL ( For re-confirm )
+            //Check Duplicate Data in MySQL ( For re-Confirm )
+            DataTable dt_selectdata;
+            dt_selectdata = GlobalAnnounce.QCList.search_mySQL_QCValidateItem(DocNum, ItemCode, BaseLine);
 
-
-
+            if (dt_selectdata.Rows.Count != 0)
+            {
+                Response.Write("<script>alert(' Duplicate Data! Please check starting status !');location.href='cnnSAPList.aspx';</script>");
+            }
+            else { 
             //Save Data to MySQL Localization & Set Status = 1
             GlobalAnnounce.QCList.insertQCd_FSAP_TMy(
                 dt_qc_SAP.Rows[0]["DocNum"].ToString(),
@@ -72,13 +83,18 @@ namespace misSystem.QC
             btn_StartValidation.Visible = false;
             Panl_FilVaInfo.Visible = true;
             status = "1";
+            }
         }
 
         protected void tb_FailedQty_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (Convert.ToInt32(tb_FailedQty.Text) > 0 && Convert.ToInt32(tb_FailedQty.Text) <= Convert.ToInt32(tb_TotalQty.Text))
+                if (tb_FailedQty.Text == "")
+                {
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Please Fill in Failed Count!');", true);
+                }
+                else if (Convert.ToInt32(tb_FailedQty.Text) > 0)
                 {
                     DataTable dt_QFailedReason;
                     //search dropListData
@@ -89,62 +105,91 @@ namespace misSystem.QC
                     drop_FailedReason.Enabled = true;
                     //lbl_failedReason.Visible = true;
                 }
-                else if (Convert.ToInt32(tb_FailedQty.Text) > Convert.ToInt32(tb_TotalQty.Text))
-                {
-                    tb_FailedQty.Text = "";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Faliure count is over Total count !');", true);
-                }
                 else if (Convert.ToInt32(tb_FailedQty.Text) < 0)
                 {
                     tb_FailedQty.Text = "";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Faliure count could not be less than zero!');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Faliure count Can't be less than zero!');", true);
                 }
                 else
                 {
                     drop_FailedReason.Enabled = false;
-                    //lbl_failedReason.Visible = false;
                 }
             }
             catch
             {
-                tb_FailedQty.Text = "";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' The Qty can not be String!');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Failed Count Can't be String!');", true);
             }
+            #region 註解
+            //try
+            //{
+            //    if (Convert.ToInt32(tb_FailedQty.Text) > 0 && Convert.ToInt32(tb_FailedQty.Text) <= Convert.ToInt32(tb_TotalQty.Text))
+            //    {
+            //        DataTable dt_QFailedReason;
+            //        //search dropListData
+            //        dt_QFailedReason = GlobalAnnounce.QCList.search_QCFailedReason();
+            //        drop_FailedReason.DataSource = dt_QFailedReason;
+            //        drop_FailedReason.DataBind();
+
+            //        drop_FailedReason.Enabled = true;
+            //        //lbl_failedReason.Visible = true;
+            //    }
+            //    else if (Convert.ToInt32(tb_FailedQty.Text) > Convert.ToInt32(tb_TotalQty.Text))
+            //    {
+            //        tb_FailedQty.Text = "";
+            //        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Faliure count is over Total count !');", true);
+            //    }
+            //    else if (Convert.ToInt32(tb_FailedQty.Text) < 0)
+            //    {
+            //        tb_FailedQty.Text = "";
+            //        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Faliure count could not be less than zero!');", true);
+            //    }
+            //    else
+            //    {
+            //        drop_FailedReason.Enabled = false;
+            //        //lbl_failedReason.Visible = false;
+            //    }
+            //}
+            //catch
+            //{
+            //    tb_FailedQty.Text = "";
+            //    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' The Qty can not be String!');", true);
+            //}
+            #endregion
         }
 
         protected void btn_submit_Click(object sender, EventArgs e)
         {
-            //insert   1. total Qty  2. failed Qty 3. Failed  Reason if have 4.Process Time 5. End_Time
-            int Process_Time = ((Convert.ToInt32(tb_ProHr.Text)) * 60 + (Convert.ToInt32(tb_ProMin.Text)));
-            string process=Process_Time.ToString();
-
-
-            // Get Selected Failed Reason Value
-
-            if (Convert.ToInt32(tb_FailedQty.Text) < 0 || tb_FailedQty.Text == "")
+            //Check All Format is OK
+            if (Convert.ToInt32(tb_FailedQty.Text) > Convert.ToInt32(tb_TotalQty.Text))
             {
-                //string TQty, string FQty, string Issue_ID, string Process_Time,string End_Time
-                doForUpdateFinished(process, "0","");
-                //GlobalAnnounce.QCList.update_saveForFinishedValidated(
-                //    tb_TotalQty.Text, 
-                //    "0", 
-                //    "",
-                //    Process_Time.ToString(),
-                //    DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"),
-                //    status);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Faliure count is over Total count !');", true);
             }
-            else if (Convert.ToInt32(tb_FailedQty.Text) > 0)
+            else if (Convert.ToInt32(tb_TotalQty.Text)==0)
             {
-                doForUpdateFinished(process, tb_FailedQty.Text, drop_FailedReason.SelectedValue);
-                //GlobalAnnounce.QCList.update_saveForFinishedValidated(
-                //    tb_TotalQty.Text,
-                //    tb_FailedQty.Text,
-                //    drop_FailedReason.SelectedValue,
-                //    Process_Time.ToString(),
-                //    DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"),
-                //    status);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Total count can't be ZERO !');", true);
+            }
+            else
+            {
+                //insert   1. total Qty  2. failed Qty 3. Failed  Reason if have 4.Process Time 5. End_Time
+                int Process_Time = ((Convert.ToInt32(tb_ProHr.Text)) * 60 + (Convert.ToInt32(tb_ProMin.Text)));
+                string process = Process_Time.ToString();
+
+
+                // Get Selected Failed Reason Value
+
+                if (Convert.ToInt32(tb_FailedQty.Text) < 0 || tb_FailedQty.Text == "")
+                {
+                    doForUpdateFinished(process, "0", "");
+                }
+                else if (Convert.ToInt32(tb_FailedQty.Text) > 0)
+                {
+                    doForUpdateFinished(process, tb_FailedQty.Text, drop_FailedReason.SelectedValue);
+                }
+                Response.Redirect(PageListString.cnnSAP_List);
             }
         }
+
+
         private void doForUpdateFinished(string Process_Time, string FailedQty,string failedReason)
         {
             string status = "2"; //finished
@@ -157,25 +202,6 @@ namespace misSystem.QC
                 status);
         }
 
-        protected void tb_TotalQty_TextChanged(object sender, EventArgs e)
-        {
-            Label1.Text = tb_TotalQty.Text;
-            Label2.Text = lbl_Qty.Text;
-            if (Convert.ToInt32(tb_TotalQty.Text) < (Convert.ToInt32(lbl_Qty.Text))-9)
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Total Count is 10 less than Qty! Please check again!');", true);
-            }
-            else if (Convert.ToInt32(tb_TotalQty.Text) > Convert.ToInt32(lbl_Qty.Text)+9){
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Total Count is 10 more than Qty! Please check again!');", true);
-            }
 
-            
-                //             if ($('#<%=tb_TotalQty.ClientID%>').val() > $('#<%=lbl_Qty.ClientID%>').val()){
-                //    $('#tb_totalError').text(" ");
-                //}
-                //else if ($('#<%=tb_TotalQty.ClientID%>').val() < $('#<%=lbl_Qty.ClientID%>').val()) {
-                //    $('#tb_totalError').text(" 計算的數量已經小於'進貨的數量，請再確認是否正確!");
-                //}
-        }
     }
 }

@@ -22,6 +22,9 @@
        <a href=<%= ResolveClientUrl("Default.aspx") %>><img src="<%=ResolveClientUrl("picture/mainMIS.jpg")%>"/></a>
         <div id='cssmenu'>
             <ul>
+                <li class='active has-sub'><a href=<%= ResolveClientUrl("QC/cnnSAPList.aspx") %>><span>IQC_Validation LIST</span></a>
+
+                </li>
                 <%--       PD&E--%>
                 <li class='active has-sub'><a href=''><span>PD&E</span></a>
                     <ul>

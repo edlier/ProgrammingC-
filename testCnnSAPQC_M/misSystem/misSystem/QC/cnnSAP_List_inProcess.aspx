@@ -8,7 +8,7 @@
                 var regex = /^[0-9]+$/;
                 if (!regex.test($('#<%=tb_TotalQty.ClientID%>').val()))
                 {
-                    $('#tb_totalError').text(" Total  count could not be String!");
+                    $('#tb_totalError').text(" Total  count cannot be String!");
                     $("#<%=tb_TotalQty.ClientID%>").val('');
                 }
 
@@ -16,7 +16,7 @@
                     $('#tb_totalError').text("");
                 }
             });
-            $('#<%=tb_ProHr.ClientID%>').on('focusout', function () {
+<%--            $('#<%=tb_ProHr.ClientID%>').on('focusout', function () {
                 var regex = /^[0-9]+$/;
                 if (!regex.test($('#<%=tb_ProHr.ClientID%>').val())) {
                     $('#tb_HrError').text(" The Qty could not be String!");
@@ -35,7 +35,7 @@
                 else {
                     $('#tb_MinError').text("");
                 }
-            });
+            });--%>
 
         });
     </script>
@@ -82,19 +82,18 @@
            <hr style="border:0; height:3px; background-color:#b5ca60"/> 
             <br /><br />
             <asp:Label ID="Label8" runat="server" Text="Total Qty : "></asp:Label>
-            <asp:TextBox ID="tb_TotalQty" runat="server" CssClass="W50_Georgia18px" OnTextChanged="tb_TotalQty_TextChanged" AutoPostBack="true"></asp:TextBox><label id="tb_totalError" class="RedBold_Georgia18px"></label>
+            <asp:TextBox ID="tb_TotalQty" runat="server" CssClass="W50_Georgia18px"></asp:TextBox><label id="tb_totalError" class="RedBold_Georgia18px"></label>
             <br /><br />
             <asp:Label ID="Label9" runat="server" Text="Failed Qty : "></asp:Label>
             <asp:TextBox ID="tb_FailedQty" runat="server" CssClass="W50_Georgia18px" OnTextChanged="tb_FailedQty_TextChanged" AutoPostBack="true"></asp:TextBox>
             <br /><br />
             <asp:Label ID="lbl_failedReason" runat="server" Text="Failed Reason :" ></asp:Label>
             <asp:DropDownList ID="drop_FailedReason" runat="server" Enabled="false" DataValueField="id" DataTextField="idDes" CssClass="Georgia18px"></asp:DropDownList>
-            <%--<asp:TextBox ID="tb_FailedReason" runat="server" CssClass="W150_Georgia18px" Visible ="false"></asp:TextBox>--%>
             <br /><br />
             <asp:Label ID="Label10" runat="server" Text="Process Time : "></asp:Label>
-            <asp:TextBox ID="tb_ProHr" runat="server" CssClass="W50_Georgia18px"></asp:TextBox><label id="tb_HrError" class="RedBold_Georgia18px"></label>
+            <asp:TextBox ID="tb_ProHr" runat="server" CssClass="W50_Georgia18px"></asp:TextBox><%--<label id="tb_HrError" class="RedBold_Georgia18px"></label>--%>
             <asp:Label ID="Label11" runat="server" Text="HR "></asp:Label>
-            <asp:TextBox ID="tb_ProMin" runat="server" CssClass="W50_Georgia18px"></asp:TextBox><label id="tb_MinError" class="RedBold_Georgia18px"></label>
+            <asp:TextBox ID="tb_ProMin" runat="server" CssClass="W50_Georgia18px"></asp:TextBox><%--<label id="tb_MinError" class="RedBold_Georgia18px"></label>--%>
             <asp:Label ID="label" runat="server" Text="MIN "></asp:Label>
             <br /><br /><br />
             <asp:Button ID="btn_submit" runat="server" Text="Submit" OnClick="btn_submit_Click" CssClass="W100H28-georgia18px" />
