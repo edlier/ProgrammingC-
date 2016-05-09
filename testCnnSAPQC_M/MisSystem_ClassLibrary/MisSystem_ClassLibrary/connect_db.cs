@@ -34,7 +34,6 @@ namespace MisSystem_ClassLibrary
             da.Fill(dt);
             return (dt);
         }
-
         public string qo(string instr)
         {
 

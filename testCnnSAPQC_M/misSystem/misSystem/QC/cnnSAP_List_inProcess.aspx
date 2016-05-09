@@ -82,7 +82,8 @@
            <hr style="border:0; height:3px; background-color:#b5ca60"/> 
             <br /><br />
             <asp:Label ID="Label8" runat="server" Text="Total Qty : "></asp:Label>
-            <asp:TextBox ID="tb_TotalQty" runat="server" CssClass="W50_Georgia18px"></asp:TextBox><label id="tb_totalError" class="RedBold_Georgia18px"></label>
+            <asp:TextBox ID="tb_TotalQty" runat="server" CssClass="W50_Georgia18px"></asp:TextBox>
+            <label id="tb_totalError" class="RedBold_Georgia18px"></label>
             <br /><br />
             <asp:Label ID="Label9" runat="server" Text="Failed Qty : "></asp:Label>
             <asp:TextBox ID="tb_FailedQty" runat="server" CssClass="W50_Georgia18px" OnTextChanged="tb_FailedQty_TextChanged" AutoPostBack="true"></asp:TextBox>

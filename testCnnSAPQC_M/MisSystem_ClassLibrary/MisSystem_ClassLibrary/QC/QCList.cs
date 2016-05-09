@@ -38,6 +38,17 @@ namespace MisSystem_ClassLibrary
             dt = publicNewClass.mydb.GetDataTable(sqlstr);
             return dt;
         }
+        public DataTable search_mySQL_QCwaitForValidateItem(string DocNum, string ItemCode, string BaseLine)
+        {
+            DataTable dt = new DataTable();
+            string sqlstr = "";
+            sqlstr += " Select * from qc_savesapdata where DocNum=" + publicNewClass.mydb.qo(DocNum) +
+                " AND  ItemCode = " + publicNewClass.mydb.qo(ItemCode) +
+                " AND  BaseLine = " + publicNewClass.mydb.qo(BaseLine);
+
+            dt = publicNewClass.mydb.GetDataTable(sqlstr);
+            return dt;
+        }
         
 
 
@@ -79,6 +90,46 @@ namespace MisSystem_ClassLibrary
             publicNewClass.mydb.InsertDataTable(aa);
         }
         #endregion
+        #region insertQCd_FSAP_TMy2
+        public DataTable insertQCd_FSAP_TMy2(
+            string DocNum,
+            string DocEntry,
+            string ItemCode,
+            string CardCode,
+            string CardName,
+
+            string BaseLine,
+            string Qty,
+            string Dscription,
+            string DocDate,
+            string Operator,
+
+            string Start_Time)
+        {
+            string aa;
+            aa = " Insert into qc_savesapdata(DocNum,DocEntry,ItemCode,CardCode,CardName,BaseLine,Qty,Dscription,DocDate,Operator,Start_Time,status,QType)"
+                + " values ("
+                + publicNewClass.mydb.qo(DocNum) + ","
+                + publicNewClass.mydb.qo(DocEntry) + ","
+                + publicNewClass.mydb.qo(ItemCode) + ","
+                + publicNewClass.mydb.qo(CardCode) + ","
+                + publicNewClass.mydb.qo(CardName) + ","
+
+                + publicNewClass.mydb.qo(BaseLine) + ","
+                + publicNewClass.mydb.qo(Qty) + ","
+                + publicNewClass.mydb.qo(Dscription) + ","
+                + publicNewClass.mydb.qo(DocDate) + ","
+                + publicNewClass.mydb.qo(Operator) + ","
+
+                + publicNewClass.mydb.qo(Start_Time) + ",    '1' ,  '1'   ); "
+
+                + " SELECT LAST_INSERT_ID() AS outID;  ";
+
+            DataTable dt;
+            dt = publicNewClass.mydb.GetDataTable(aa);
+            return dt;
+        }
+        #endregion
 
         #region update_ValidatedData
         public void update_ValidatedData(
@@ -102,7 +153,7 @@ namespace MisSystem_ClassLibrary
         }
         #endregion
 
-        public void update_saveForFinishedValidated(string TQty, string FQty, string Issue_ID, string Process_Time,string End_Time,string status)
+        public void update_saveForFinishedValidated(string TQty, string FQty, string Issue_ID, string Process_Time,string End_Time,string status,string ID)
         {
             string aa;
             aa = " update qc_savesapdata set "
@@ -111,8 +162,9 @@ namespace MisSystem_ClassLibrary
                 + " Issue_ID = " + publicNewClass.mydb.qo(Issue_ID) + ","
                 + " Process_Time = " + publicNewClass.mydb.qo(Process_Time) + ","
                 + " End_Time = " + publicNewClass.mydb.qo(End_Time) + ","
-                + " status = " + publicNewClass.mydb.qo(status);
-
+                + " status = " + publicNewClass.mydb.qo(status)
+                + "  where id=" +publicNewClass.mydb.qo(ID);
+            //where
             publicNewClass.mydb.InsertDataTable(aa);
         }
     }
