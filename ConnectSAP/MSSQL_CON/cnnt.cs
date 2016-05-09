@@ -16,7 +16,7 @@ namespace MSSQL_CON
 
         public DataTable GetDataTable(string sqlstr)
         {
-            SqlConnection conn = new SqlConnection("server=sap-server; database=Lightmed_20151023;uid=sa;pwd=dwins123!@#");
+            SqlConnection conn = new SqlConnection("server=sap-server;database=Lightmed_20151023;uid=sa;pwd=dwins123!@#");
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(sqlstr, conn);

@@ -16,7 +16,7 @@ namespace MSSQL_CON
             DataTable dt = new DataTable();
 
             string sqlstr = "";
-            sqlstr += " Select T1.ItemCode,TM.ItemName,A.WH01,SUM(T1.PlannedQty)-SUM(T1.IssuedQty) as 'TotalNeed',B.WH03,C.WH04,F.WH16";
+            sqlstr += " Select T1.ItemCode,TM.ItemName,A.WH01,SUM(T1.PlannedQty)-SUM(T1.IssuedQty) as 'TotalNeed',B.WH03,C.WH04,F.WH16,G.WH17";
 
             sqlstr += " From WOR1 T1 ";
 
@@ -32,6 +32,9 @@ namespace MSSQL_CON
             sqlstr += " Outer Apply (";
             sqlstr += " Select SUM(TW.OnHand) as WH16 From OITW TW Where TW.WhsCode in ('16') and TW.ItemCode = T1.ItemCode";
             sqlstr += " ) F  ";
+            sqlstr += " Outer Apply (";
+            sqlstr += " Select SUM(TW.OnHand) as WH17 From OITW TW Where TW.WhsCode in ('17') and TW.ItemCode = T1.ItemCode";
+            sqlstr += " ) G  ";
 
             sqlstr += " Inner Join OWOR T0 On T0.DocEntry = T1.DocEntry";
             sqlstr += " Inner Join OITW TW On TW.ItemCode = T1.ItemCode and TW.WhsCode = T1.wareHouse";
@@ -40,7 +43,7 @@ namespace MSSQL_CON
             sqlstr += " Where T0.Status not in  ('C','L')";
             sqlstr += "  and ISNULL(T0.U_SaleType,'')  <> 'OUT'";
             //sqlstr += " --and (T0.PostDate  <= '20140506' or '' = '20140506')";
-            sqlstr += " Group By T1.ItemCode,TM.ItemName,A.WH01,B.WH03,C.WH04,F.WH16";
+            sqlstr += " Group By T1.ItemCode,TM.ItemName,A.WH01,B.WH03,C.WH04,F.WH16,G.WH17";
             sqlstr += " Having SUM(T1.PlannedQty)-SUM(T1.IssuedQty)-(Select SUM(TW.OnHand) From OITW TW Where TW.ItemCode = T1.ItemCode and TW.WhsCode in ('01','03','04','07','11','16')) > 0";
 
             sqlstr += " Order By";

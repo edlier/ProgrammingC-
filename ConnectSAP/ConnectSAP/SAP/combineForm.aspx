@@ -15,11 +15,13 @@
             <Columns>
                 <asp:BoundField DataField="ItemCode" HeaderText="ItemCode"/>
                 <asp:BoundField DataField="ItemName" HeaderText="ItemName"/>
+                <%--需求總數--%>
                 <asp:BoundField DataField="TotalNeed" HeaderText="需求總數" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="WH01" HeaderText="WH01" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="WH03" HeaderText="WH03" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="WH04" HeaderText="WH04" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="WH16" HeaderText="WH16" DataFormatString="{0:0.##}"/>                
+                <asp:BoundField DataField="WH17" HeaderText="WH17" DataFormatString="{0:0.##}"/>                
                 <asp:BoundField DataField="QCqty" HeaderText="QC 005" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="QCqty2" HeaderText="QC 006" DataFormatString="{0:0.##}"/>
                 <asp:BoundField DataField="LackMaterial" HeaderText="月缺料數量" DataFormatString="{0:0.##}"/>

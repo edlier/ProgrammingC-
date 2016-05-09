@@ -36,7 +36,7 @@ namespace ConnectSAP.SAP
             List.Columns.Add("EndDate");
 
 
-            #region QCList1 先行處理
+            #region 加入QC1
             for (int i = 0; i < QCList.Rows.Count; i++)
             {
                 string expression;
@@ -75,7 +75,7 @@ namespace ConnectSAP.SAP
                 }
             }
             #endregion
-            #region QC2
+            #region 加入QC2
             //QC222222
             for (int i = 0; i < QCList2.Rows.Count; i++)
             {
@@ -114,6 +114,7 @@ namespace ConnectSAP.SAP
                 }
             }
             #endregion
+
             #region Stock List查詢ItemCode並加入資料
             //Stock List查詢ItemCode並加入資料 (前置時間，最小訂購，最低庫存量)
             for (int i = 0; i < stockList.Rows.Count; i++)
@@ -184,8 +185,10 @@ namespace ConnectSAP.SAP
                 {
                     List.Rows[i]["WH16"] = "0";
                 }
-
-
+                if (List.Rows[i]["WH17"].ToString() == "")
+                {
+                    List.Rows[i]["WH17"] = "0";
+                }
                 if (List.Rows[i]["QCqty"].ToString() == "")
                 {
                     List.Rows[i]["QCqty"] = "0";
@@ -198,8 +201,10 @@ namespace ConnectSAP.SAP
                 //{
                 //    List.Rows[i]["MinOrdrQty"] = "0";
                 //}
+                #endregion
 
-                //Lead Time若為空值 則為30天
+                #region Lead Time & MinLevel 若為空值 則為"None
+                //Lead Time & MinLevel 若為空值 則為"None"
                 if (List.Rows[i]["LeadTime"].ToString() == "")
                 {
                     List.Rows[i]["LeadTime"] = "None";
@@ -211,6 +216,13 @@ namespace ConnectSAP.SAP
                 }
                 #endregion
 
+                //======================================================================================================================
+                //======================================================================================================================
+                //======================================================================================================================
+                //以下為資料運算處理串======================================================================================================
+
+
+                //MinLevel & LeadTime !="None"
                 if (List.Rows[i]["MinLevel"].ToString() != "None" && List.Rows[i]["LeadTime"].ToString() != "None")
                 {
                     //把30天填入後才能做運此運算.....
@@ -218,12 +230,13 @@ namespace ConnectSAP.SAP
                     List.Rows[i]["BdAMult"] = (String.Format(CultureInfo.InvariantCulture, "{0:0.##}", (Convert.ToDouble(List.Rows[i]["MinLevel"]) / Convert.ToDouble(List.Rows[i]["LeadTime"]) * 30)));
 
 
-                    ////計算缺料 (需求-WHO1-WHO3-WH04-WH16-QC1-QC2)
+                    ////計算缺料 (需求-WHO1-WHO3-WH04-WH16-WH17-QC1-QC2)
                     double lack = Convert.ToDouble(List.Rows[i]["BdAMult"])
                         - Convert.ToDouble(List.Rows[i]["WH01"])
                         - Convert.ToDouble(List.Rows[i]["WH03"])
                         - Convert.ToDouble(List.Rows[i]["WH04"])
                         - Convert.ToDouble(List.Rows[i]["WH16"])
+                        - Convert.ToDouble(List.Rows[i]["WH17"])
                         - Convert.ToDouble(List.Rows[i]["QCqty"])
                         - Convert.ToDouble(List.Rows[i]["QCqty2"]);
 
@@ -235,6 +248,7 @@ namespace ConnectSAP.SAP
                         + Convert.ToInt32(List.Rows[i]["WH03"])
                         + Convert.ToInt32(List.Rows[i]["WH04"])
                         + Convert.ToInt32(List.Rows[i]["WH16"])
+                        + Convert.ToInt32(List.Rows[i]["WH17"])
                         + Convert.ToInt32(List.Rows[i]["QCqty"])
                         + Convert.ToInt32(List.Rows[i]["QCqty2"]);
 
@@ -247,14 +261,15 @@ namespace ConnectSAP.SAP
                     double qcVF_count = dayUsed * 14;
 
 
+                    //dayUsed本來無大於零 ， 為求保險 做處理
                     if (dayUsed > 0)
                     {
                         double addDateToEnd = (totalStock - qcVF_count) / dayUsed;
-                        List.Rows[i]["EndDate"] = DateTime.Now.AddDays((int)addDateToEnd).ToString("MM-dd-yyyy");
+                        List.Rows[i]["EndDate"] = DateTime.Now.AddDays((int)addDateToEnd).ToString("MM/dd/yyyy");
                     }
                     else
                     {
-                        List.Rows[i]["EndDate"] = DateTime.Now.ToString("MM-dd-yyyy");
+                        List.Rows[i]["EndDate"] = "dayUsed 有未大於零的數字";
                     }
                 }
                 else
@@ -263,16 +278,11 @@ namespace ConnectSAP.SAP
                 }
 
             }
-            //#region 移除 Total 為0
-            //for (int i = List.Rows.Count - 1; i >= 0; i--)
-            //{
-
-            //}
-            //#endregion
 
 
 
-            #region 移除  缺料小於零 & Total 為0
+
+            #region 移除  Total = 空值的資料
             for (int i = List.Rows.Count - 1; i >= 0; i--)
             {
                 //if (Convert.ToInt32(List.Rows[i]["LackMaterial"]) <= 0 && (List.Rows[i]["LackMaterial"]).ToString()!="None")
@@ -287,6 +297,7 @@ namespace ConnectSAP.SAP
             #endregion
 
 
+            //顯示資料
             List.DefaultView.Sort = "ItemCode asc";
             grid_CbineLst.DataSource = List;
             grid_CbineLst.DataBind();
