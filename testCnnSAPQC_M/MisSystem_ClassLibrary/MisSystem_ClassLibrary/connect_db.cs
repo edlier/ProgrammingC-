@@ -17,7 +17,6 @@ namespace MisSystem_ClassLibrary
         //insert update  delete
         public void InsertDataTable(string sqlstr)
         {
-
             MySqlDataAdapter da = new MySqlDataAdapter();
             MySqlCommand cmd = new MySqlCommand();
             cmd = new MySqlCommand(sqlstr, conn);

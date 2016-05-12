@@ -17,16 +17,41 @@ namespace MisSystem_ClassLibrary
             dt = publicNewClass.mydb.GetDataTable(sqlstr);
             return dt;
         }
-        public DataTable search_QCFailedReason()
+        //public DataTable search_QCFailedReason()
+        //{
+        //    DataTable dt = new DataTable();
+        //    string sqlstr = "";
+        //    sqlstr += " Select id,+ "
+        //        + "CONCAT_WS(',',  id , description ) as idDes from qc_failedreason";
+
+        //    dt = publicNewClass.mydb.GetDataTable(sqlstr);
+        //    return dt;
+        //}
+
+
+        public DataTable search_QCFailedType()
         {
             DataTable dt = new DataTable();
             string sqlstr = "";
             sqlstr += " Select id,+ "
-                + "CONCAT_WS(',',  id , description ) as idDes from qc_failedreason";
+                + "CONCAT_WS(',',  id , description ) as idDes from qc_failedType";
 
             dt = publicNewClass.mydb.GetDataTable(sqlstr);
             return dt;
         }
+
+        public DataTable search_QCFReasonList()
+        {
+            DataTable dt = new DataTable();
+            string sqlstr = "";
+            sqlstr += " Select id, TypeID, "
+                + " CONCAT_WS(',',  id , description ) as idDes from qc_failedreason";
+
+            dt = publicNewClass.mydb.GetDataTable(sqlstr);
+            return dt;
+        }
+
+
         public DataTable search_mySQL_QCValidateItem(string DocNum, string ItemCode, string BaseLine)
         {
             DataTable dt = new DataTable();
@@ -153,17 +178,36 @@ namespace MisSystem_ClassLibrary
         }
         #endregion
 
-        public void update_saveForFinishedValidated(string TQty, string FQty, string Issue_ID, string Process_Time,string End_Time,string status,string ID)
+        public void update_saveForFinishedValidated(string TQty, string FQty, string Process_HR, string Process_MIN, string End_Time, string status, string ID)
         {
             string aa;
             aa = " update qc_savesapdata set "
                 + " TQty = " + publicNewClass.mydb.qo(TQty) + ","
                 + " FQty = " + publicNewClass.mydb.qo(FQty) + ","
-                + " Issue_ID = " + publicNewClass.mydb.qo(Issue_ID) + ","
-                + " Process_Time = " + publicNewClass.mydb.qo(Process_Time) + ","
+                //+ " Issue_ID = " + publicNewClass.mydb.qo(Issue_ID) + ","
+                + " ProcessT_HR = " + publicNewClass.mydb.qo(Process_HR) + ","
+                + " ProcessT_MIN = " + publicNewClass.mydb.qo(Process_MIN) + ","
                 + " End_Time = " + publicNewClass.mydb.qo(End_Time) + ","
                 + " status = " + publicNewClass.mydb.qo(status)
                 + "  where id=" +publicNewClass.mydb.qo(ID);
+            //where
+            publicNewClass.mydb.InsertDataTable(aa);
+        }
+        public void update_FailedReasonNDQty(string itemID, string[,] failedID)
+        {
+            string aa = "";
+            for (int i = 0; i < 5; i++)
+            {
+                if (failedID[i, 1] != "0" && failedID[i, 1] != null && failedID[i, 1] != "" && failedID[i, 0] != "" && failedID[i, 0] != null)
+                {
+                    aa += "  Insert into qc_iqcfdetail(ValidatedID,Qty,FailedID) "
+                    + " values("
+                    + publicNewClass.mydb.qo(itemID) + ","
+                    + publicNewClass.mydb.qo(failedID[i, 1]) + ","
+                    + publicNewClass.mydb.qo(failedID[i, 0])
+                    + ") ;";
+                }
+            }
             //where
             publicNewClass.mydb.InsertDataTable(aa);
         }

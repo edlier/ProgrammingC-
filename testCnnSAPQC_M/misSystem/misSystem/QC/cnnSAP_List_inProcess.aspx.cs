@@ -10,6 +10,8 @@ namespace misSystem.QC
     public partial class cnnSAP_List_inProcess : System.Web.UI.Page
     {
         DataTable dt_qc_SAP;
+        DataTable dt_QFailedReason;
+        DataTable dt_QFType; 
         string status;
         string DocNum;
         string ItemCode;
@@ -17,7 +19,6 @@ namespace misSystem.QC
         string itemID;
         protected void Page_Load(object sender, EventArgs e)
         {
-
             //Read URL Data
             DocNum = Request.QueryString["DocNum"];
             ItemCode = Request.QueryString["ItemCode"];
@@ -27,6 +28,8 @@ namespace misSystem.QC
             DataTable dtMYSQLwait;
             dtMYSQLwait = GlobalAnnounce.QCList.search_mySQL_QCwaitForValidateItem(DocNum, ItemCode, BaseLine);
 
+            dt_QFType = GlobalAnnounce.QCList.search_QCFailedType();
+            dt_QFailedReason = GlobalAnnounce.QCList.search_QCFReasonList();
             if (dtMYSQLwait.Rows.Count > 0)
             {
                 itemID = dtMYSQLwait.Rows[0]["ID"].ToString();
@@ -117,29 +120,23 @@ namespace misSystem.QC
         {
             try
             {
-                if (tb_FailedQty.Text == "")
+                if (tb_FailedQty.Text == "" || tb_FailedQty.Text=="0")
                 {
-                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Please Fill in Failed Count!');", true);
+                    btn_AddFailedItem.Enabled = false;
                 }
                 else if (Convert.ToInt32(tb_FailedQty.Text) > 0)
                 {
-                    DataTable dt_QFailedReason;
-                    //search dropListData
-                    dt_QFailedReason = GlobalAnnounce.QCList.search_QCFailedReason();
-                    drop_FailedReason.DataSource = dt_QFailedReason;
-                    drop_FailedReason.DataBind();
-
-                    drop_FailedReason.Enabled = true;
-                    //lbl_failedReason.Visible = true;
+                    btn_AddFailedItem.Enabled = true;
                 }
                 else if (Convert.ToInt32(tb_FailedQty.Text) < 0)
                 {
                     tb_FailedQty.Text = "";
+                    btn_AddFailedItem.Enabled = false;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Faliure count Can't be less than zero!');", true);
                 }
                 else
                 {
-                    drop_FailedReason.Enabled = false;
+                    //drop_FailedReason.Enabled = false;
                 }
             }
             catch
@@ -147,19 +144,17 @@ namespace misSystem.QC
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Failed Count Can't be String!');", true);
             }
         }
-
         protected void btn_submit_Click(object sender, EventArgs e)
         {
             //-----------------------------------------------------
             //-----------Check All Format is OK-----------
             //-----------------------------------------------------
-
-        // Check Total Qty isn't over Quantity + 2
+            #region 驗證格式
+            // Check Total Qty isn't over Quantity + 2
             if ((Convert.ToInt32(lbl_Qty.Text)+2)< Convert.ToInt32(tb_TotalQty.Text))
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Total count is too much over than Qty!');", true);
             }
-
          // Check tb_Failed Qty isn't over Total Qty 
             else if (Convert.ToInt32(tb_FailedQty.Text) > Convert.ToInt32(tb_TotalQty.Text))
             {
@@ -170,6 +165,7 @@ namespace misSystem.QC
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Total count can't be ZERO !');", true);
             }
+            #endregion
             else
             {
                 int Process_Time = ((Convert.ToInt32(tb_ProHr.Text)) * 60 + (Convert.ToInt32(tb_ProMin.Text)));
@@ -178,31 +174,134 @@ namespace misSystem.QC
                 // Get Selected Failed Reason Value
                 if (Convert.ToInt32(tb_FailedQty.Text) < 0 || tb_FailedQty.Text == "")
                 {
-                    doForUpdateFinished(process, "0", "");
+                    doForUpdateFinished("0");
                 }
                 else if (Convert.ToInt32(tb_FailedQty.Text) > 0)
                 {
-                   
-                    doForUpdateFinished(process, tb_FailedQty.Text, drop_FailedReason.SelectedValue);
-                    //Label2.Text = itemID;
+                    doForUpdateFinished(tb_FailedQty.Text);
+                    doForUpFailedRnQty();
                 }
                 Response.Redirect(PageListString.cnnSAP_List);
             }
         }
-
-
-        private void doForUpdateFinished(string Process_Time, string FailedQty,string failedReason)
+        private void doForUpdateFinished(string FailedQty)
         {
             string status = "2"; //finished
-            //insert   1. total Qty  2. failed Qty 3. Failed  Reason if have 4.Process Time 5. End_Time
+            
+            //WHRER  itemID = thisssss
             GlobalAnnounce.QCList.update_saveForFinishedValidated(
+                //insert   1. total Qty  2. failed Qty 3.Process HR  4.Process MIN 5. End_Time
                 tb_TotalQty.Text,
                 FailedQty,
-                failedReason,
-                Process_Time.ToString(),
+                tb_ProHr.Text,
+                tb_ProMin.Text,
                 DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"),
-                status, itemID);
+
+                status,
+                itemID);
+        }
+        private void doForUpFailedRnQty()
+        {
+            string[,] failedID = new string[5, 2];
+            failedID[0, 0] = drop_FailedR1.SelectedValue;
+            failedID[0, 1] = tb_FailedQty1.Text;
+
+            failedID[1, 0] = drop_FailedR2.SelectedValue;
+            failedID[1, 1] = tb_FailedQty2.Text;
+
+            failedID[2, 0] = drop_FailedR3.SelectedValue;
+            failedID[2, 1] = tb_FailedQty3.Text;
+
+            failedID[3, 0] = drop_FailedR4.SelectedValue;
+            failedID[3, 1] = tb_FailedQty4.Text;
+
+            failedID[4, 0] = drop_FailedR5.SelectedValue;
+            failedID[4, 1] = tb_FailedQty5.Text;
+
+            GlobalAnnounce.QCList.update_FailedReasonNDQty(itemID, failedID);
         }
 
+
+        protected void Drop_FailedType_TextChanged(object sender, EventArgs e)
+        {
+            string expression = " TypeID = '" + (((DropDownList)sender).SelectedValue) + "'";
+
+            DataView dv = new DataView(dt_QFailedReason);
+            dv.RowFilter = expression;
+            //switch 新增 資料到指令的DROP
+            switch(((DropDownList)sender).ID){
+                case "drop_FailedType1":
+                    drop_FailedR1.DataSource = dv;
+                    drop_FailedR1.DataBind();
+                    break;
+                case "drop_FailedType2":
+                    drop_FailedR2.DataSource = dv;
+                    drop_FailedR2.DataBind();
+                    break;
+                case "drop_FailedType3":
+                    drop_FailedR3.DataSource = dv;
+                    drop_FailedR3.DataBind();
+                    break;
+                case "drop_FailedType4":
+                    drop_FailedR4.DataSource = dv;
+                    drop_FailedR4.DataBind();
+                    break;
+                case "drop_FailedType5":
+                    drop_FailedR5.DataSource = dv;
+                    drop_FailedR5.DataBind();
+                    break;
+            }
+        }
+
+        protected void btn_AddFailedItem_Click(object sender, EventArgs e)
+        {
+            sessionAdd();
+
+            tb_FailedQty2.Text = test_lbl.Text;
+            switch (Convert.ToInt32(test_lbl.Text))
+            {
+                case 1:
+                    doDropControl(drop_FailedType1, drop_FailedR1, tb_FailedQty1);
+                    break;
+                case 2:
+                    doDropControl(drop_FailedType2, drop_FailedR2, tb_FailedQty2);
+                    break;
+                case 3:
+                    doDropControl(drop_FailedType3, drop_FailedR3, tb_FailedQty3);
+                    break;
+                case 4:
+                    doDropControl(drop_FailedType4, drop_FailedR4, tb_FailedQty4);
+                    break;
+                case 5:
+                    doDropControl(drop_FailedType5, drop_FailedR5, tb_FailedQty5);
+                    break;
+
+            }
+        }
+
+        //For Showing Detail Selection
+        private void doDropControl(DropDownList drop_FailedType, DropDownList drop_FailedR, TextBox tb_FailedQty)
+        {
+            drop_FailedType.Visible = true;
+            drop_FailedR.Visible = true;
+            tb_FailedQty.Visible = true;
+            drop_FailedType.DataSource = dt_QFType;
+            drop_FailedType.DataBind();
+        }
+        private void sessionAdd()
+        {
+            if (Convert.ToInt32(test_lbl.Text) >0 && Convert.ToInt32(test_lbl.Text) <= 5)
+            {
+                test_lbl.Text = (Convert.ToInt32(test_lbl.Text) + 1).ToString();
+            }
+            else
+            {
+                test_lbl.Text="1";
+            }
+            if (Convert.ToInt32(test_lbl.Text) > 5)
+            {
+                test_lbl.Text = "5";
+            }
+        }
     }
 }
