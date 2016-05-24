@@ -75,6 +75,65 @@ namespace misSystem.QC
             }
         }
 
+
+        //----------------- TextChanged Event -----------------
+        protected void tb_FailedQty_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tb_FailedQty.Text == "" || tb_FailedQty.Text=="0")
+                {
+                    btn_AddFailedItem.Enabled = false;
+                }
+                else if (Convert.ToInt32(tb_FailedQty.Text) > 0)
+                {
+                    btn_AddFailedItem.Enabled = true;
+                }
+                else if (Convert.ToInt32(tb_FailedQty.Text) < 0)
+                {
+                    tb_FailedQty.Text = "";
+                    btn_AddFailedItem.Enabled = false;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Faliure count Can't be less than zero!');", true);
+                }
+                else
+                {
+                    //drop_FailedReason.Enabled = false;
+                }
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Failed Count Can't be String!');", true);
+            }
+        }
+        protected void Drop_FailedType_TextChanged(object sender, EventArgs e)
+        {
+            string expression = " TypeID = " + (((DropDownList)sender).SelectedValue) ;
+
+            DataView dv = new DataView(dt_QFailedReason);
+            dv.RowFilter = expression;
+
+            //switch 新增 資料到指令的DROP
+            switch(((DropDownList)sender).ID){
+                case "drop_FailedType1":
+                    GlobalAnnounce.OtherFuction.BindDataToDrop(dv,drop_FailedR1);
+                    break;
+                case "drop_FailedType2":
+                    GlobalAnnounce.OtherFuction.BindDataToDrop(dv, drop_FailedR2);
+                    break;
+                case "drop_FailedType3":
+                    GlobalAnnounce.OtherFuction.BindDataToDrop(dv, drop_FailedR3);
+                    break;
+                case "drop_FailedType4":
+                    GlobalAnnounce.OtherFuction.BindDataToDrop(dv, drop_FailedR4);
+                    break;
+                case "drop_FailedType5":
+                    GlobalAnnounce.OtherFuction.BindDataToDrop(dv, drop_FailedR5);
+                    break;
+            }
+        }
+
+
+        //----------------- Click Event -----------------
         protected void btn_StartValidation_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Start Validation ! Please check the Quantity First!');", true);
@@ -113,35 +172,6 @@ namespace misSystem.QC
              //Set varieble in ID
             itemID = dttest.Rows[0]["outID"].ToString();
             //Label4.Text = itemID;
-            }
-        }
-
-        protected void tb_FailedQty_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (tb_FailedQty.Text == "" || tb_FailedQty.Text=="0")
-                {
-                    btn_AddFailedItem.Enabled = false;
-                }
-                else if (Convert.ToInt32(tb_FailedQty.Text) > 0)
-                {
-                    btn_AddFailedItem.Enabled = true;
-                }
-                else if (Convert.ToInt32(tb_FailedQty.Text) < 0)
-                {
-                    tb_FailedQty.Text = "";
-                    btn_AddFailedItem.Enabled = false;
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Faliure count Can't be less than zero!');", true);
-                }
-                else
-                {
-                    //drop_FailedReason.Enabled = false;
-                }
-            }
-            catch
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(' Failed Count Can't be String!');", true);
             }
         }
         protected void btn_submit_Click(object sender, EventArgs e)
@@ -184,6 +214,60 @@ namespace misSystem.QC
                 Response.Redirect(PageListString.cnnSAP_List);
             }
         }
+
+        protected void btn_AddFailedItem_Click(object sender, EventArgs e)
+        {
+            counterAdd();
+            //tb_FailedQty2.Text = test_lbl.Text;
+            switch (Convert.ToInt32(test_lbl.Text))
+            {
+                case 1:
+                    doForShowingControls(drop_FailedType1, drop_FailedR1, tb_FailedQty1, lbl_FQty1);
+                    btn_RemoveFItem.Enabled = true;
+                    break;
+                case 2:
+                    doForShowingControls(drop_FailedType2, drop_FailedR2, tb_FailedQty2, lbl_FQty2);
+                    break;
+                case 3:
+                    doForShowingControls(drop_FailedType3, drop_FailedR3, tb_FailedQty3, lbl_FQty3);
+                    break;
+                case 4:
+                    doForShowingControls(drop_FailedType4, drop_FailedR4, tb_FailedQty4, lbl_FQty4);
+                    break;
+                case 5:
+                    doForShowingControls(drop_FailedType5, drop_FailedR5, tb_FailedQty5, lbl_FQty5);
+                    btn_AddFailedItem.Enabled = false;
+                    break;
+            }
+        }
+        protected void btn_RemoveFItem_Click(object sender, EventArgs e)
+        {
+            counterRemove();
+            switch (Convert.ToInt32(test_lbl.Text))
+            {
+                case 0:
+                    btn_RemoveFItem.Enabled = false;
+                    doForHideControlls(drop_FailedType1, drop_FailedR1, tb_FailedQty1, lbl_FQty1);
+                    break;
+                case 1:
+                    doForHideControlls(drop_FailedType2, drop_FailedR2, tb_FailedQty2, lbl_FQty2);
+                    break;
+                case 2:
+                    doForHideControlls(drop_FailedType3, drop_FailedR3, tb_FailedQty3, lbl_FQty3);
+                    break;
+                case 3:
+                    doForHideControlls(drop_FailedType4, drop_FailedR4, tb_FailedQty4, lbl_FQty4);
+                    break;
+                case 4:
+                    doForHideControlls(drop_FailedType5, drop_FailedR5, tb_FailedQty5, lbl_FQty5);
+                    btn_AddFailedItem.Enabled = true;
+                    break;
+            }
+        }
+
+
+
+        //Update into database "qc_savesapdata"
         private void doForUpdateFinished(string FailedQty)
         {
             string status = "2"; //finished
@@ -200,6 +284,8 @@ namespace misSystem.QC
                 status,
                 itemID);
         }
+
+        //Update into database "qc_iqcfdetail" BY Add failed Detail into Array
         private void doForUpFailedRnQty()
         {
             string[,] failedID = new string[5, 2];
@@ -221,74 +307,29 @@ namespace misSystem.QC
             GlobalAnnounce.QCList.update_FailedReasonNDQty(itemID, failedID);
         }
 
-
-        protected void Drop_FailedType_TextChanged(object sender, EventArgs e)
+        private void doForHideControlls(DropDownList drop_FailedType, DropDownList drop_FailedR, TextBox tb_FailedQty,Label lbl_textQty)
         {
-            string expression = " TypeID = '" + (((DropDownList)sender).SelectedValue) + "'";
-
-            DataView dv = new DataView(dt_QFailedReason);
-            dv.RowFilter = expression;
-            //switch 新增 資料到指令的DROP
-            switch(((DropDownList)sender).ID){
-                case "drop_FailedType1":
-                    drop_FailedR1.DataSource = dv;
-                    drop_FailedR1.DataBind();
-                    break;
-                case "drop_FailedType2":
-                    drop_FailedR2.DataSource = dv;
-                    drop_FailedR2.DataBind();
-                    break;
-                case "drop_FailedType3":
-                    drop_FailedR3.DataSource = dv;
-                    drop_FailedR3.DataBind();
-                    break;
-                case "drop_FailedType4":
-                    drop_FailedR4.DataSource = dv;
-                    drop_FailedR4.DataBind();
-                    break;
-                case "drop_FailedType5":
-                    drop_FailedR5.DataSource = dv;
-                    drop_FailedR5.DataBind();
-                    break;
-            }
-        }
-
-        protected void btn_AddFailedItem_Click(object sender, EventArgs e)
-        {
-            sessionAdd();
-
-            tb_FailedQty2.Text = test_lbl.Text;
-            switch (Convert.ToInt32(test_lbl.Text))
-            {
-                case 1:
-                    doDropControl(drop_FailedType1, drop_FailedR1, tb_FailedQty1);
-                    break;
-                case 2:
-                    doDropControl(drop_FailedType2, drop_FailedR2, tb_FailedQty2);
-                    break;
-                case 3:
-                    doDropControl(drop_FailedType3, drop_FailedR3, tb_FailedQty3);
-                    break;
-                case 4:
-                    doDropControl(drop_FailedType4, drop_FailedR4, tb_FailedQty4);
-                    break;
-                case 5:
-                    doDropControl(drop_FailedType5, drop_FailedR5, tb_FailedQty5);
-                    break;
-
-            }
+            drop_FailedType.Visible = false;
+            drop_FailedR.Visible = false;
+            tb_FailedQty.Visible = false;
+            lbl_textQty.Visible = false;
+            drop_FailedType.Items.Clear();
+            drop_FailedR.Items.Clear();
+            tb_FailedQty.Text = "";
         }
 
         //For Showing Detail Selection
-        private void doDropControl(DropDownList drop_FailedType, DropDownList drop_FailedR, TextBox tb_FailedQty)
+        private void doForShowingControls(DropDownList drop_FailedType, DropDownList drop_FailedR, TextBox tb_FailedQty,Label lbl_textQty)
         {
             drop_FailedType.Visible = true;
             drop_FailedR.Visible = true;
             tb_FailedQty.Visible = true;
-            drop_FailedType.DataSource = dt_QFType;
-            drop_FailedType.DataBind();
+            lbl_textQty.Visible = true;
+            drop_FailedType.Items.Clear();
+            GlobalAnnounce.OtherFuction.BindDataToDrop(dt_QFType, drop_FailedType);
         }
-        private void sessionAdd()
+
+        private void counterAdd()
         {
             if (Convert.ToInt32(test_lbl.Text) >0 && Convert.ToInt32(test_lbl.Text) <= 5)
             {
@@ -303,5 +344,17 @@ namespace misSystem.QC
                 test_lbl.Text = "5";
             }
         }
+        private void counterRemove()
+        {
+            if (Convert.ToInt32(test_lbl.Text) > 0)
+            {
+                test_lbl.Text = (Convert.ToInt32(test_lbl.Text) - 1).ToString();
+            }
+            if (Convert.ToInt32(test_lbl.Text) < 0)
+            {
+                test_lbl.Text = "0";
+            }
+        }
+
     }
 }

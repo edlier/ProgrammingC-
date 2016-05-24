@@ -43,7 +43,7 @@
                 <asp:BoundField DataField="Qty" HeaderText="Qty" DataFormatString="{0:0.##}" ItemStyle-Width="50px">
                     <ItemStyle Width=""></ItemStyle>
                 </asp:BoundField>
-                <asp:TemplateField HeaderText="Btn">
+                <asp:TemplateField HeaderText="">
                     <ItemTemplate>
                         <asp:Button ID="btn_start" runat="server" OnClick="btn_start_Click" CssClass="Georgia18px"  CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
                     </ItemTemplate>

@@ -238,6 +238,15 @@ namespace misSystem.QC {
         protected global::System.Web.UI.WebControls.Button btn_AddFailedItem;
         
         /// <summary>
+        /// btn_RemoveFItem 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_RemoveFItem;
+        
+        /// <summary>
         /// drop_FailedType1 控制項。
         /// </summary>
         /// <remarks>
@@ -254,6 +263,15 @@ namespace misSystem.QC {
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drop_FailedR1;
+        
+        /// <summary>
+        /// lbl_FQty1 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_FQty1;
         
         /// <summary>
         /// tb_FailedQty1 控制項。
@@ -283,6 +301,15 @@ namespace misSystem.QC {
         protected global::System.Web.UI.WebControls.DropDownList drop_FailedR2;
         
         /// <summary>
+        /// lbl_FQty2 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_FQty2;
+        
+        /// <summary>
         /// tb_FailedQty2 控制項。
         /// </summary>
         /// <remarks>
@@ -308,6 +335,15 @@ namespace misSystem.QC {
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drop_FailedR3;
+        
+        /// <summary>
+        /// lbl_FQty3 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_FQty3;
         
         /// <summary>
         /// tb_FailedQty3 控制項。
@@ -337,6 +373,15 @@ namespace misSystem.QC {
         protected global::System.Web.UI.WebControls.DropDownList drop_FailedR4;
         
         /// <summary>
+        /// lbl_FQty4 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_FQty4;
+        
+        /// <summary>
         /// tb_FailedQty4 控制項。
         /// </summary>
         /// <remarks>
@@ -362,6 +407,15 @@ namespace misSystem.QC {
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drop_FailedR5;
+        
+        /// <summary>
+        /// lbl_FQty5 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_FQty5;
         
         /// <summary>
         /// tb_FailedQty5 控制項。

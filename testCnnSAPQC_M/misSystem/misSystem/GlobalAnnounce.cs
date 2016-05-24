@@ -21,6 +21,7 @@ namespace misSystem
         public static QCList QCList = new QCList(); 
 
         public static validateSession validateSession = new validateSession();
+        public static OtherFuction OtherFuction = new OtherFuction();
         public static SQL_String SQL_String = new SQL_String();
     }
 }
