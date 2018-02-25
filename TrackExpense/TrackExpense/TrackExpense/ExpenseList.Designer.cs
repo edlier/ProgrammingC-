@@ -30,23 +30,59 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btn_InputPage = new System.Windows.Forms.Button();
+            this.dateTimePicker_searchEnd = new System.Windows.Forms.DateTimePicker();
+            this.btn_Search = new System.Windows.Forms.Button();
+            this.dateTimePicker_searchStart = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SpentDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Currency = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receiptNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.payCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreditCardName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expenseTypeB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expenseTypeS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PlaceB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PlaceS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.payType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InsertDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(23, 76);
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.SpentDate,
+            this.Content,
+            this.Price,
+            this.Currency,
+            this.receiptNum,
+            this.payCard,
+            this.CreditCardName,
+            this.expenseTypeB,
+            this.expenseTypeS,
+            this.Note,
+            this.PlaceB,
+            this.PlaceS,
+            this.payType,
+            this.InsertDate});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 76);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(1225, 582);
+            this.dataGridView1.Size = new System.Drawing.Size(1508, 535);
             this.dataGridView1.TabIndex = 0;
             // 
             // btn_InputPage
             // 
             this.btn_InputPage.BackColor = System.Drawing.SystemColors.Info;
             this.btn_InputPage.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.btn_InputPage.Location = new System.Drawing.Point(1270, 76);
+            this.btn_InputPage.Location = new System.Drawing.Point(1291, 15);
             this.btn_InputPage.Name = "btn_InputPage";
             this.btn_InputPage.Size = new System.Drawing.Size(128, 51);
             this.btn_InputPage.TabIndex = 26;
@@ -54,11 +90,148 @@
             this.btn_InputPage.UseVisualStyleBackColor = false;
             this.btn_InputPage.Click += new System.EventHandler(this.btn_InputPage_Click);
             // 
+            // dateTimePicker_searchEnd
+            // 
+            this.dateTimePicker_searchEnd.Location = new System.Drawing.Point(262, 21);
+            this.dateTimePicker_searchEnd.Name = "dateTimePicker_searchEnd";
+            this.dateTimePicker_searchEnd.Size = new System.Drawing.Size(200, 34);
+            this.dateTimePicker_searchEnd.TabIndex = 27;
+            // 
+            // btn_Search
+            // 
+            this.btn_Search.Location = new System.Drawing.Point(468, 21);
+            this.btn_Search.Name = "btn_Search";
+            this.btn_Search.Size = new System.Drawing.Size(98, 34);
+            this.btn_Search.TabIndex = 28;
+            this.btn_Search.Text = "Search";
+            this.btn_Search.UseVisualStyleBackColor = true;
+            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
+            // 
+            // dateTimePicker_searchStart
+            // 
+            this.dateTimePicker_searchStart.Location = new System.Drawing.Point(23, 21);
+            this.dateTimePicker_searchStart.Name = "dateTimePicker_searchStart";
+            this.dateTimePicker_searchStart.Size = new System.Drawing.Size(200, 34);
+            this.dateTimePicker_searchStart.TabIndex = 29;
+            this.dateTimePicker_searchStart.ValueChanged += new System.EventHandler(this.dateTimePicker_searchStart_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(230, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 25);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "~";
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Width = 50;
+            // 
+            // SpentDate
+            // 
+            this.SpentDate.DataPropertyName = "SpentDate";
+            this.SpentDate.HeaderText = "消費日期";
+            this.SpentDate.Name = "SpentDate";
+            // 
+            // Content
+            // 
+            this.Content.DataPropertyName = "Content";
+            this.Content.HeaderText = "內容";
+            this.Content.Name = "Content";
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "價格";
+            this.Price.Name = "Price";
+            this.Price.Width = 75;
+            // 
+            // Currency
+            // 
+            this.Currency.DataPropertyName = "Currency";
+            this.Currency.HeaderText = "幣";
+            this.Currency.Name = "Currency";
+            this.Currency.Width = 50;
+            // 
+            // receiptNum
+            // 
+            this.receiptNum.DataPropertyName = "receiptNum";
+            this.receiptNum.HeaderText = "發票";
+            this.receiptNum.Name = "receiptNum";
+            this.receiptNum.Width = 68;
+            // 
+            // payCard
+            // 
+            this.payCard.DataPropertyName = "payCard";
+            this.payCard.HeaderText = "支付卡";
+            this.payCard.Name = "payCard";
+            this.payCard.Width = 80;
+            // 
+            // CreditCardName
+            // 
+            this.CreditCardName.DataPropertyName = "CreditCardName";
+            this.CreditCardName.HeaderText = "信用卡";
+            this.CreditCardName.Name = "CreditCardName";
+            this.CreditCardName.Width = 80;
+            // 
+            // expenseTypeB
+            // 
+            this.expenseTypeB.DataPropertyName = "expenseTypeB";
+            this.expenseTypeB.HeaderText = "支出類型";
+            this.expenseTypeB.Name = "expenseTypeB";
+            // 
+            // expenseTypeS
+            // 
+            this.expenseTypeS.DataPropertyName = "expenseTypeS";
+            this.expenseTypeS.HeaderText = "支出類型";
+            this.expenseTypeS.Name = "expenseTypeS";
+            // 
+            // Note
+            // 
+            this.Note.DataPropertyName = "Note";
+            this.Note.HeaderText = "Note";
+            this.Note.Name = "Note";
+            this.Note.Width = 120;
+            // 
+            // PlaceB
+            // 
+            this.PlaceB.DataPropertyName = "PlaceB";
+            this.PlaceB.HeaderText = "地點";
+            this.PlaceB.Name = "PlaceB";
+            // 
+            // PlaceS
+            // 
+            this.PlaceS.DataPropertyName = "PlaceS";
+            this.PlaceS.HeaderText = "地點";
+            this.PlaceS.Name = "PlaceS";
+            // 
+            // payType
+            // 
+            this.payType.DataPropertyName = "payType";
+            this.payType.HeaderText = "類型";
+            this.payType.Name = "payType";
+            this.payType.Width = 50;
+            // 
+            // InsertDate
+            // 
+            this.InsertDate.DataPropertyName = "InsertDate";
+            this.InsertDate.HeaderText = "新增時間";
+            this.InsertDate.Name = "InsertDate";
+            this.InsertDate.Visible = false;
+            // 
             // ExpenseList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1431, 679);
+            this.ClientSize = new System.Drawing.Size(1532, 690);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dateTimePicker_searchStart);
+            this.Controls.Add(this.btn_Search);
+            this.Controls.Add(this.dateTimePicker_searchEnd);
             this.Controls.Add(this.btn_InputPage);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -68,6 +241,7 @@
             this.Load += new System.EventHandler(this.List_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -75,5 +249,24 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btn_InputPage;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_searchEnd;
+        private System.Windows.Forms.Button btn_Search;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_searchStart;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SpentDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Content;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Currency;
+        private System.Windows.Forms.DataGridViewTextBoxColumn receiptNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn payCard;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreditCardName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expenseTypeB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expenseTypeS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PlaceB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PlaceS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn payType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InsertDate;
     }
 }
