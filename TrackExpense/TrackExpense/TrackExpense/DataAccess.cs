@@ -10,13 +10,13 @@ namespace TrackExpense
     {
         private db dbConnect = new db();
 
-        public DataTable Get_ExpenseListByDate(string startDate,string endDate)
+        public DataTable Get_ExpenseListByDate(string startDate, string endDate)
         {
             DataTable dt;
             string sqlstr = "";
             sqlstr = "CALL searchExpenseList("
-                +dbConnect.qo(startDate)+","
-                +dbConnect.qo(endDate)
+                + dbConnect.qo(startDate) + ","
+                + dbConnect.qo(endDate)
                 + ")";
             dt = dbConnect.GetDataTable(sqlstr);
             return dt;
@@ -47,7 +47,7 @@ namespace TrackExpense
         }
         public DataTable Get_CatogoryTypeS_FromBType(string BType)
         {
-            DataTable dt=new DataTable();
+            DataTable dt = new DataTable();
             if (BType != "")
             {
                 string sqlstr = "";
@@ -65,6 +65,60 @@ namespace TrackExpense
             dt = dbConnect.GetDataTable(sqlstr);
             return dt;
         }
+        public DataTable Get_PlaceCatB_CheckDul(string Type)
+        {
+            DataTable dt;
+            string sqlstr = "";
+            sqlstr = "SELECT * FROM place_catb WHERE Type=" + dbConnect.qo(Type);
+            dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+
+        public DataTable Get_PlaceCatS()
+        {
+            DataTable dt;
+            string sqlstr = "";
+            sqlstr = "SELECT place_cats.ID, LinkBID, place_catb.Type AS 'PlaceBType',place_cats.Des "
+                +" FROM place_cats "
+                +" LEFT JOIN place_catb ON(place_catb.ID=place_cats.LinkBID) ";
+            dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+        public DataTable Get_PlaceCatS_FullList_ByBPlace(string BPlace)
+        {
+            DataTable dt;
+            string sqlstr = "";
+            sqlstr = "SELECT place_cats.ID, LinkBID, place_catb.Type AS 'PlaceBType',place_cats.Des "
+                + " FROM place_cats "
+                + " LEFT JOIN place_catb ON(place_catb.ID=place_cats.LinkBID) WHERE LinkBID=" + BPlace;
+            dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+        public DataTable Get_PlaceCatS_FullList_ByBPlaceAndDes(string BPlace,string Des)
+        {
+            DataTable dt;
+            string sqlstr = "";
+            sqlstr = "SELECT place_cats.ID, LinkBID, place_catb.Type AS 'PlaceBType',place_cats.Des "
+                + " FROM place_cats "
+                + " LEFT JOIN place_catb ON(place_catb.ID=place_cats.LinkBID) "
+                +  " WHERE LinkBID=" + BPlace+ " AND "
+                +" (place_cats.Des Like '%"+Des+ "%'  OR  place_cats.Des Like '%" + Des+ "' OR  place_cats.Des Like '"+ Des+"%'           )";
+            dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+        public DataTable Get_PlaceCatS_FullList_ByDes(string Des)
+        {
+            DataTable dt;
+            string sqlstr = "";
+            sqlstr = "SELECT place_cats.ID, LinkBID, place_catb.Type AS 'PlaceBType',place_cats.Des "
+                + " FROM place_cats "
+                + " LEFT JOIN place_catb ON(place_catb.ID=place_cats.LinkBID) "
+                + " WHERE " 
+                +" (place_cats.Des Like '%"+Des+ "%'  OR  place_cats.Des Like '%" + Des+ "' OR  place_cats.Des Like '"+ Des+"%'           )";
+            dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+
         public DataTable Get_PlaeceCatS_FromBPlace(string BPlace)
         {
             DataTable dt;
@@ -73,6 +127,7 @@ namespace TrackExpense
             dt = dbConnect.GetDataTable(sqlstr);
             return dt;
         }
+
         public DataTable Insert_ExpenseRecord(string spentDate,string content,string price,string currency,string payByCard,
             string PayCreditCardID,string expense_CatB, string expense_CatS,string receiptNum,string type,
             string Place_CatB,string Place_CatS,string Note)
@@ -101,6 +156,34 @@ namespace TrackExpense
              DataTable dt = dbConnect.GetDataTable(sqlstr);
             return dt;
         }
+
+        public DataTable Insert_PlaceTypeB(string PlaceTypeB)
+        {
+            string sqlstr = "";
+            sqlstr = "INSERT INTO place_catb " +
+                " (Type)"
+                + "VALUES (" + dbConnect.qo(PlaceTypeB) +");";
+            DataTable dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+        public DataTable Update_PlaceTypeB(string PlaceTypeB_ID,string PlaceTypeB)
+        {
+            string sqlstr = "";
+            sqlstr = "UPDATE place_catb " +
+                "  SET Type="+dbConnect.qo(PlaceTypeB)
+                + " WHERE ID="+ PlaceTypeB_ID;
+            DataTable dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+        public DataTable Delete_PlaceTypeB(string PlaceTypeB_ID)
+        {
+            string sqlstr = "";
+            sqlstr = "DELETE FROM place_catb " 
+                + " WHERE ID=" + PlaceTypeB_ID;
+            DataTable dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+
 
     }
 }

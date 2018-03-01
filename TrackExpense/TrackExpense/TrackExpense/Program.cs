@@ -16,7 +16,7 @@ namespace TrackExpense
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ExpenseList());
+            Application.Run(new config_PlaceList());
         }
     }
 }
