@@ -49,7 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cb_EditS_TypeBList = new System.Windows.Forms.ComboBox();
             this.dgv_PlaceS = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlaceBType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Des = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg_btn_SEdit = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -57,7 +57,7 @@
             this.LinkBID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_AddPlaceS = new System.Windows.Forms.Button();
             this.btn_EditPlaceS_Cancel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_Hide_PlaceS_ID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tb_insertPlaceS = new System.Windows.Forms.TextBox();
@@ -235,7 +235,7 @@
             this.tabPage3.Controls.Add(this.dgv_PlaceS);
             this.tabPage3.Controls.Add(this.btn_AddPlaceS);
             this.tabPage3.Controls.Add(this.btn_EditPlaceS_Cancel);
-            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.tb_Hide_PlaceS_ID);
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.tb_insertPlaceS);
@@ -287,7 +287,7 @@
             this.dgv_PlaceS.AllowUserToDeleteRows = false;
             this.dgv_PlaceS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_PlaceS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
+            this.SID,
             this.PlaceBType,
             this.Des,
             this.dg_btn_SEdit,
@@ -301,13 +301,13 @@
             this.dgv_PlaceS.TabIndex = 0;
             this.dgv_PlaceS.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_PlaceS_CellContentClick);
             // 
-            // dataGridViewTextBoxColumn3
+            // SID
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn3.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 80;
+            this.SID.DataPropertyName = "ID";
+            this.SID.HeaderText = "ID";
+            this.SID.Name = "SID";
+            this.SID.ReadOnly = true;
+            this.SID.Width = 80;
             // 
             // PlaceBType
             // 
@@ -361,6 +361,7 @@
             this.btn_AddPlaceS.TabIndex = 30;
             this.btn_AddPlaceS.Text = "New Add";
             this.btn_AddPlaceS.UseVisualStyleBackColor = false;
+            this.btn_AddPlaceS.Click += new System.EventHandler(this.btn_AddPlaceS_Click);
             // 
             // btn_EditPlaceS_Cancel
             // 
@@ -374,13 +375,13 @@
             this.btn_EditPlaceS_Cancel.UseVisualStyleBackColor = false;
             this.btn_EditPlaceS_Cancel.Click += new System.EventHandler(this.btn_EditPlaceS_Cancel_Click);
             // 
-            // textBox1
+            // tb_Hide_PlaceS_ID
             // 
-            this.textBox1.Location = new System.Drawing.Point(780, 390);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(65, 34);
-            this.textBox1.TabIndex = 33;
-            this.textBox1.Visible = false;
+            this.tb_Hide_PlaceS_ID.Location = new System.Drawing.Point(780, 390);
+            this.tb_Hide_PlaceS_ID.Name = "tb_Hide_PlaceS_ID";
+            this.tb_Hide_PlaceS_ID.Size = new System.Drawing.Size(65, 34);
+            this.tb_Hide_PlaceS_ID.TabIndex = 33;
+            this.tb_Hide_PlaceS_ID.Visible = false;
             // 
             // label3
             // 
@@ -449,7 +450,7 @@
         private System.Windows.Forms.DataGridView dgv_PlaceS;
         private System.Windows.Forms.Button btn_AddPlaceS;
         private System.Windows.Forms.Button btn_EditPlaceS_Cancel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_Hide_PlaceS_ID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_insertPlaceS;
@@ -458,14 +459,14 @@
         private System.Windows.Forms.DataGridViewButtonColumn btn_Edit;
         private System.Windows.Forms.DataGridViewButtonColumn btn_Delete;
         private System.Windows.Forms.ComboBox cb_EditS_TypeBList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cb_SearchPlaceS_BID;
+        private System.Windows.Forms.TextBox tb_SearchPlaceS_Des;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PlaceBType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Des;
         private System.Windows.Forms.DataGridViewButtonColumn dg_btn_SEdit;
         private System.Windows.Forms.DataGridViewButtonColumn dg_btn_SDel;
         private System.Windows.Forms.DataGridViewTextBoxColumn LinkBID;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cb_SearchPlaceS_BID;
-        private System.Windows.Forms.TextBox tb_SearchPlaceS_Des;
     }
 }

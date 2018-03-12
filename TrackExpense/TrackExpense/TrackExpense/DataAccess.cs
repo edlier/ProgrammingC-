@@ -73,6 +73,15 @@ namespace TrackExpense
             dt = dbConnect.GetDataTable(sqlstr);
             return dt;
         }
+        public DataTable Get_PlaceCatS_CheckDul(string Place_BID, string Place_SDes)
+        {
+            DataTable dt;
+            string sqlstr = "";
+            sqlstr = "SELECT * FROM place_cats WHERE LinkBID="+ Place_BID 
+                + " AND Des=" + dbConnect.qo(Place_SDes);
+            dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
 
         public DataTable Get_PlaceCatS()
         {
@@ -118,13 +127,39 @@ namespace TrackExpense
             dt = dbConnect.GetDataTable(sqlstr);
             return dt;
         }
-
         public DataTable Get_PlaeceCatS_FromBPlace(string BPlace)
         {
             DataTable dt;
             string sqlstr = "";
             sqlstr = "SELECT * FROM place_cats WHERE LinkBID=" + BPlace;
             dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+        public DataTable Update_PlaceTypeS(string Place_SID,string Place_BID, string Place_SDes)
+        {
+            string sqlstr = "";
+            sqlstr = "UPDATE place_cats " +
+                "  SET Des=" + dbConnect.qo(Place_SDes) + ","
+                        + " LinkBID="+ Place_BID
+                + " WHERE ID=" + Place_SID;
+            DataTable dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+        public DataTable Delete_PlaceTypeS(string PlaceTypeS_ID)
+        {
+            string sqlstr = "";
+            sqlstr = "DELETE FROM place_cats "
+                + " WHERE ID=" + PlaceTypeS_ID;
+            DataTable dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+        public DataTable Insert_PlaceTypeS(string Place_BID, string Place_SDes)
+        {
+            string sqlstr = "";
+            sqlstr = "INSERT INTO place_cats " +
+                " (LinkBID,Des)"
+                + "VALUES (" + Place_BID +","+ dbConnect.qo(Place_SDes) + ");";
+            DataTable dt = dbConnect.GetDataTable(sqlstr);
             return dt;
         }
 

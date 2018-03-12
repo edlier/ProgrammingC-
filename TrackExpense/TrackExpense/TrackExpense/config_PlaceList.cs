@@ -122,6 +122,15 @@ namespace TrackExpense
             //Rebind List
             DataTable dt_PlaceCatB = DataAccess.Get_PlaceCatB();
             dgv_PlaceB.DataSource = dt_PlaceCatB;
+
+            //Rebind S Type Edit Dropdown
+            DataTable dt_PlaceCats_EditTypeB = DataAccess.Get_PlaceCatB();
+            cb_EditS_TypeBList.DisplayMember = "Type";
+            cb_EditS_TypeBList.ValueMember = "ID";
+            dt_PlaceCats_EditTypeB = PulicFunction.SetFirstChooseItem("ID", "Type", dt_PlaceCats_EditTypeB);
+            cb_EditS_TypeBList.DataSource = dt_PlaceCats_EditTypeB;
+            cb_EditS_TypeBList.SelectedIndex = 0;
+            cb_EditS_TypeBList.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void btn_EditPlaceB_Cancel_Click(object sender, EventArgs e)
         {
@@ -135,7 +144,7 @@ namespace TrackExpense
         {
             string str_PlaceSTypeText = dgv_PlaceS.Rows[e.RowIndex].Cells["Des"].Value.ToString();
             string str_PlaceBID = dgv_PlaceS.Rows[e.RowIndex].Cells["LinkBID"].Value.ToString();
-
+            string str_PlaceSID = dgv_PlaceS.Rows[e.RowIndex].Cells["SID"].Value.ToString();
 
             if (e.ColumnIndex == dgv_PlaceS.Columns["dg_btn_SEdit"].Index || e.ColumnIndex == dgv_PlaceS.Columns["dg_btn_SDel"].Index)
             {
@@ -143,6 +152,7 @@ namespace TrackExpense
                 cb_EditS_TypeBList.DataSource = null;
 
                 tb_insertPlaceS.Text = str_PlaceSTypeText;
+                tb_Hide_PlaceS_ID.Text = str_PlaceSID;
 
                 //dt_CatPlaceTypeS = SetFirstChooseItem("Des", dt_CatPlaceTypeS);
                 cb_EditS_TypeBList.DisplayMember = "Type";
@@ -196,6 +206,59 @@ namespace TrackExpense
                 dgv_PlaceS.DataSource = dt_PlaceSList;
             }
         }
+        private void btn_AddPlaceS_Click(object sender, EventArgs e)
+        {
+            string str_Place_BID = cb_EditS_TypeBList.SelectedValue.ToString();
+            string str_Place_SDes = tb_insertPlaceS.Text;
+            string str_PlaceSEditID = tb_Hide_PlaceS_ID.Text;
+
+            if (btn_AddPlaceS.Text == "Edit")
+            {
+                //Check For Dulplicate
+                if (Check_PlaceTypeS_Dul(str_Place_BID,str_Place_SDes) == true)
+                {
+                    //Update in DB
+                    DataAccess.Update_PlaceTypeS(str_PlaceSEditID,str_Place_BID, str_Place_SDes);
+                }
+                else
+                {
+                    MessageBox.Show("Place B and S Des Dulplicate");
+                }
+            }
+            else if (btn_AddPlaceS.Text == "Delete")
+            {
+                DialogResult myResult = MessageBox.Show("Are you sure you want to delete?", "Delete Comfirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (myResult == DialogResult.Yes)
+                {
+                    //Delete BY ID
+                    DataAccess.Delete_PlaceTypeS(str_PlaceSEditID);
+                }
+                else if (myResult == DialogResult.No)
+                {
+                }
+            }
+            else if (btn_AddPlaceS.Text == "New Add")
+            {
+                //Check For Dulplicate
+                if (Check_PlaceTypeS_Dul(str_Place_BID, str_Place_SDes) == true)
+                {
+                    DataAccess.Insert_PlaceTypeS(str_Place_BID, str_Place_SDes);
+                }
+                else
+                {
+                    MessageBox.Show("New Place BID and S Des Dulplicate");
+                }
+            }
+
+            tb_Hide_PlaceS_ID.Text = "";
+            tb_insertPlaceS.Text = "";
+
+            ////Rebind List
+            DataTable dt_PlaceCatS = DataAccess.Get_PlaceCatS();
+            dgv_PlaceS.DataSource = dt_PlaceCatS;
+
+
+        }
         #endregion
 
         public bool Check_PlaceTypeB_Dul(string Place_BType)
@@ -207,7 +270,16 @@ namespace TrackExpense
             }
             return false;
         }
+        public bool Check_PlaceTypeS_Dul(string Place_BID, string Place_SDes)
+        {
+            DataTable dt_PlaceS_Dul = DataAccess.Get_PlaceCatS_CheckDul(Place_BID, Place_SDes);
+            if (dt_PlaceS_Dul.Rows.Count == 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
-        
+
     }
 }
