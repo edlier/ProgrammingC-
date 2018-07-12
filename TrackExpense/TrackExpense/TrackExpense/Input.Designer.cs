@@ -79,7 +79,7 @@
             this.tb_SearchPlaceS_Des = new System.Windows.Forms.TextBox();
             this.cb_SearchPlaceS_BID = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.cb_EditS_TypeBList = new System.Windows.Forms.ComboBox();
+            this.cb_EditS_PlaceBList = new System.Windows.Forms.ComboBox();
             this.dgv_PlaceS = new System.Windows.Forms.DataGridView();
             this.SID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlaceBType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,6 +93,38 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.tb_insertPlaceS = new System.Windows.Forms.TextBox();
+            this.tp_AddType = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tp_AddType_subB = new System.Windows.Forms.TabPage();
+            this.dgv_TypeB = new System.Windows.Forms.DataGridView();
+            this.tp_AddType_B_dgv_TypeaB_BID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tp_AddType_B_dgv_TypeaB_Des = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tp_AddType_B_dgv_TypeaB_Btn_Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tp_AddType_B_dgv_TypeB_Btn_Del = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btn_AddTypeB = new System.Windows.Forms.Button();
+            this.btn_EditTypeB_Cancel = new System.Windows.Forms.Button();
+            this.tb_Hide_TypeB_ID = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tb_InsertTypeB = new System.Windows.Forms.TextBox();
+            this.tp_AddType_subS = new System.Windows.Forms.TabPage();
+            this.tb_SearchTypeS_Des = new System.Windows.Forms.TextBox();
+            this.cb_SearchTypeS_BID = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cb_EditS_TypeBList = new System.Windows.Forms.ComboBox();
+            this.dgv_TypeS = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn4 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.tb_Hide_TypeS_ID = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tb_InsertTypeS = new System.Windows.Forms.TextBox();
             this.panel_payment.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tp_InputAll.SuspendLayout();
@@ -103,6 +135,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PlaceB)).BeginInit();
             this.tp_AddPlace_subS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PlaceS)).BeginInit();
+            this.tp_AddType.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tp_AddType_subB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_TypeB)).BeginInit();
+            this.tp_AddType_subS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_TypeS)).BeginInit();
             this.SuspendLayout();
             // 
             // datePicker_spentDT
@@ -431,6 +469,7 @@
             // 
             this.tp_InputAll.Controls.Add(this.tp_InputExpense);
             this.tp_InputAll.Controls.Add(this.tp_AddPlace);
+            this.tp_InputAll.Controls.Add(this.tp_AddType);
             this.tp_InputAll.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tp_InputAll.Location = new System.Drawing.Point(12, 12);
             this.tp_InputAll.Name = "tp_InputAll";
@@ -503,7 +542,7 @@
             this.tp_AddPlace_subB.Location = new System.Drawing.Point(4, 34);
             this.tp_AddPlace_subB.Name = "tp_AddPlace_subB";
             this.tp_AddPlace_subB.Padding = new System.Windows.Forms.Padding(3);
-            this.tp_AddPlace_subB.Size = new System.Drawing.Size(864, 453);
+            this.tp_AddPlace_subB.Size = new System.Drawing.Size(864, 552);
             this.tp_AddPlace_subB.TabIndex = 0;
             this.tp_AddPlace_subB.Text = "地點 - 大分類";
             this.tp_AddPlace_subB.UseVisualStyleBackColor = true;
@@ -623,7 +662,7 @@
             this.tp_AddPlace_subS.Controls.Add(this.tb_SearchPlaceS_Des);
             this.tp_AddPlace_subS.Controls.Add(this.cb_SearchPlaceS_BID);
             this.tp_AddPlace_subS.Controls.Add(this.label11);
-            this.tp_AddPlace_subS.Controls.Add(this.cb_EditS_TypeBList);
+            this.tp_AddPlace_subS.Controls.Add(this.cb_EditS_PlaceBList);
             this.tp_AddPlace_subS.Controls.Add(this.dgv_PlaceS);
             this.tp_AddPlace_subS.Controls.Add(this.btn_AddPlaceS);
             this.tp_AddPlace_subS.Controls.Add(this.btn_EditPlaceS_Cancel);
@@ -645,6 +684,7 @@
             this.tb_SearchPlaceS_Des.Name = "tb_SearchPlaceS_Des";
             this.tb_SearchPlaceS_Des.Size = new System.Drawing.Size(155, 34);
             this.tb_SearchPlaceS_Des.TabIndex = 37;
+            this.tb_SearchPlaceS_Des.TextChanged += new System.EventHandler(this.tb_SearchPlaceS_Des_TextChanged);
             // 
             // cb_SearchPlaceS_BID
             // 
@@ -664,13 +704,13 @@
             this.label11.TabIndex = 35;
             this.label11.Text = "搜尋 : ";
             // 
-            // cb_EditS_TypeBList
+            // cb_EditS_PlaceBList
             // 
-            this.cb_EditS_TypeBList.FormattingEnabled = true;
-            this.cb_EditS_TypeBList.Location = new System.Drawing.Point(93, 448);
-            this.cb_EditS_TypeBList.Name = "cb_EditS_TypeBList";
-            this.cb_EditS_TypeBList.Size = new System.Drawing.Size(143, 33);
-            this.cb_EditS_TypeBList.TabIndex = 34;
+            this.cb_EditS_PlaceBList.FormattingEnabled = true;
+            this.cb_EditS_PlaceBList.Location = new System.Drawing.Point(93, 448);
+            this.cb_EditS_PlaceBList.Name = "cb_EditS_PlaceBList";
+            this.cb_EditS_PlaceBList.Size = new System.Drawing.Size(143, 33);
+            this.cb_EditS_PlaceBList.TabIndex = 34;
             // 
             // dgv_PlaceS
             // 
@@ -800,6 +840,331 @@
             this.tb_insertPlaceS.Size = new System.Drawing.Size(155, 34);
             this.tb_insertPlaceS.TabIndex = 28;
             // 
+            // tp_AddType
+            // 
+            this.tp_AddType.Controls.Add(this.tabControl2);
+            this.tp_AddType.Location = new System.Drawing.Point(4, 34);
+            this.tp_AddType.Name = "tp_AddType";
+            this.tp_AddType.Padding = new System.Windows.Forms.Padding(3);
+            this.tp_AddType.Size = new System.Drawing.Size(927, 625);
+            this.tp_AddType.TabIndex = 2;
+            this.tp_AddType.Text = "Add - Type";
+            this.tp_AddType.UseVisualStyleBackColor = true;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tp_AddType_subB);
+            this.tabControl2.Controls.Add(this.tp_AddType_subS);
+            this.tabControl2.Location = new System.Drawing.Point(33, 18);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(872, 590);
+            this.tabControl2.TabIndex = 37;
+            // 
+            // tp_AddType_subB
+            // 
+            this.tp_AddType_subB.Controls.Add(this.dgv_TypeB);
+            this.tp_AddType_subB.Controls.Add(this.btn_AddTypeB);
+            this.tp_AddType_subB.Controls.Add(this.btn_EditTypeB_Cancel);
+            this.tp_AddType_subB.Controls.Add(this.tb_Hide_TypeB_ID);
+            this.tp_AddType_subB.Controls.Add(this.label14);
+            this.tp_AddType_subB.Controls.Add(this.label15);
+            this.tp_AddType_subB.Controls.Add(this.tb_InsertTypeB);
+            this.tp_AddType_subB.Location = new System.Drawing.Point(4, 34);
+            this.tp_AddType_subB.Name = "tp_AddType_subB";
+            this.tp_AddType_subB.Padding = new System.Windows.Forms.Padding(3);
+            this.tp_AddType_subB.Size = new System.Drawing.Size(864, 552);
+            this.tp_AddType_subB.TabIndex = 0;
+            this.tp_AddType_subB.Text = "類型 - 大分類";
+            this.tp_AddType_subB.UseVisualStyleBackColor = true;
+            // 
+            // dgv_TypeB
+            // 
+            this.dgv_TypeB.AllowUserToAddRows = false;
+            this.dgv_TypeB.AllowUserToDeleteRows = false;
+            this.dgv_TypeB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_TypeB.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tp_AddType_B_dgv_TypeaB_BID,
+            this.tp_AddType_B_dgv_TypeaB_Des,
+            this.tp_AddType_B_dgv_TypeaB_Btn_Edit,
+            this.tp_AddType_B_dgv_TypeB_Btn_Del});
+            this.dgv_TypeB.Location = new System.Drawing.Point(19, 21);
+            this.dgv_TypeB.Name = "dgv_TypeB";
+            this.dgv_TypeB.ReadOnly = true;
+            this.dgv_TypeB.RowTemplate.Height = 27;
+            this.dgv_TypeB.Size = new System.Drawing.Size(661, 340);
+            this.dgv_TypeB.TabIndex = 0;
+            this.dgv_TypeB.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_TypeB_CellContentClick);
+            // 
+            // tp_AddType_B_dgv_TypeaB_BID
+            // 
+            this.tp_AddType_B_dgv_TypeaB_BID.DataPropertyName = "BID";
+            this.tp_AddType_B_dgv_TypeaB_BID.HeaderText = "ID";
+            this.tp_AddType_B_dgv_TypeaB_BID.Name = "tp_AddType_B_dgv_TypeaB_BID";
+            this.tp_AddType_B_dgv_TypeaB_BID.ReadOnly = true;
+            this.tp_AddType_B_dgv_TypeaB_BID.Width = 80;
+            // 
+            // tp_AddType_B_dgv_TypeaB_Des
+            // 
+            this.tp_AddType_B_dgv_TypeaB_Des.DataPropertyName = "Des";
+            this.tp_AddType_B_dgv_TypeaB_Des.HeaderText = "類別分類";
+            this.tp_AddType_B_dgv_TypeaB_Des.Name = "tp_AddType_B_dgv_TypeaB_Des";
+            this.tp_AddType_B_dgv_TypeaB_Des.ReadOnly = true;
+            this.tp_AddType_B_dgv_TypeaB_Des.Width = 150;
+            // 
+            // tp_AddType_B_dgv_TypeaB_Btn_Edit
+            // 
+            this.tp_AddType_B_dgv_TypeaB_Btn_Edit.HeaderText = "修改";
+            this.tp_AddType_B_dgv_TypeaB_Btn_Edit.Name = "tp_AddType_B_dgv_TypeaB_Btn_Edit";
+            this.tp_AddType_B_dgv_TypeaB_Btn_Edit.ReadOnly = true;
+            this.tp_AddType_B_dgv_TypeaB_Btn_Edit.Text = "修改";
+            this.tp_AddType_B_dgv_TypeaB_Btn_Edit.ToolTipText = "修改";
+            this.tp_AddType_B_dgv_TypeaB_Btn_Edit.UseColumnTextForButtonValue = true;
+            // 
+            // tp_AddType_B_dgv_TypeB_Btn_Del
+            // 
+            this.tp_AddType_B_dgv_TypeB_Btn_Del.HeaderText = "刪除";
+            this.tp_AddType_B_dgv_TypeB_Btn_Del.Name = "tp_AddType_B_dgv_TypeB_Btn_Del";
+            this.tp_AddType_B_dgv_TypeB_Btn_Del.ReadOnly = true;
+            this.tp_AddType_B_dgv_TypeB_Btn_Del.Text = "刪除";
+            this.tp_AddType_B_dgv_TypeB_Btn_Del.ToolTipText = "刪除";
+            this.tp_AddType_B_dgv_TypeB_Btn_Del.UseColumnTextForButtonValue = true;
+            // 
+            // btn_AddTypeB
+            // 
+            this.btn_AddTypeB.BackColor = System.Drawing.SystemColors.Info;
+            this.btn_AddTypeB.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.btn_AddTypeB.Location = new System.Drawing.Point(261, 367);
+            this.btn_AddTypeB.Name = "btn_AddTypeB";
+            this.btn_AddTypeB.Size = new System.Drawing.Size(128, 51);
+            this.btn_AddTypeB.TabIndex = 30;
+            this.btn_AddTypeB.Text = "New Add";
+            this.btn_AddTypeB.UseVisualStyleBackColor = false;
+            // 
+            // btn_EditTypeB_Cancel
+            // 
+            this.btn_EditTypeB_Cancel.BackColor = System.Drawing.SystemColors.Info;
+            this.btn_EditTypeB_Cancel.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.btn_EditTypeB_Cancel.Location = new System.Drawing.Point(395, 367);
+            this.btn_EditTypeB_Cancel.Name = "btn_EditTypeB_Cancel";
+            this.btn_EditTypeB_Cancel.Size = new System.Drawing.Size(128, 51);
+            this.btn_EditTypeB_Cancel.TabIndex = 31;
+            this.btn_EditTypeB_Cancel.Text = "Cancel";
+            this.btn_EditTypeB_Cancel.UseVisualStyleBackColor = false;
+            // 
+            // tb_Hide_TypeB_ID
+            // 
+            this.tb_Hide_TypeB_ID.Location = new System.Drawing.Point(638, 376);
+            this.tb_Hide_TypeB_ID.Name = "tb_Hide_TypeB_ID";
+            this.tb_Hide_TypeB_ID.Size = new System.Drawing.Size(155, 34);
+            this.tb_Hide_TypeB_ID.TabIndex = 33;
+            this.tb_Hide_TypeB_ID.Visible = false;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(19, 380);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(67, 25);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "類型 : ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(537, 379);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(105, 25);
+            this.label15.TabIndex = 32;
+            this.label15.Text = "類型B ID : ";
+            this.label15.Visible = false;
+            // 
+            // tb_InsertTypeB
+            // 
+            this.tb_InsertTypeB.Location = new System.Drawing.Point(94, 377);
+            this.tb_InsertTypeB.Name = "tb_InsertTypeB";
+            this.tb_InsertTypeB.Size = new System.Drawing.Size(155, 34);
+            this.tb_InsertTypeB.TabIndex = 28;
+            // 
+            // tp_AddType_subS
+            // 
+            this.tp_AddType_subS.Controls.Add(this.tb_SearchTypeS_Des);
+            this.tp_AddType_subS.Controls.Add(this.cb_SearchTypeS_BID);
+            this.tp_AddType_subS.Controls.Add(this.label16);
+            this.tp_AddType_subS.Controls.Add(this.cb_EditS_TypeBList);
+            this.tp_AddType_subS.Controls.Add(this.dgv_TypeS);
+            this.tp_AddType_subS.Controls.Add(this.button3);
+            this.tp_AddType_subS.Controls.Add(this.button4);
+            this.tp_AddType_subS.Controls.Add(this.tb_Hide_TypeS_ID);
+            this.tp_AddType_subS.Controls.Add(this.label17);
+            this.tp_AddType_subS.Controls.Add(this.label18);
+            this.tp_AddType_subS.Controls.Add(this.tb_InsertTypeS);
+            this.tp_AddType_subS.Location = new System.Drawing.Point(4, 34);
+            this.tp_AddType_subS.Name = "tp_AddType_subS";
+            this.tp_AddType_subS.Padding = new System.Windows.Forms.Padding(3);
+            this.tp_AddType_subS.Size = new System.Drawing.Size(864, 552);
+            this.tp_AddType_subS.TabIndex = 2;
+            this.tp_AddType_subS.Text = "類型 - 小分類";
+            this.tp_AddType_subS.UseVisualStyleBackColor = true;
+            // 
+            // tb_SearchTypeS_Des
+            // 
+            this.tb_SearchTypeS_Des.Location = new System.Drawing.Point(232, 17);
+            this.tb_SearchTypeS_Des.Name = "tb_SearchTypeS_Des";
+            this.tb_SearchTypeS_Des.Size = new System.Drawing.Size(155, 34);
+            this.tb_SearchTypeS_Des.TabIndex = 37;
+            this.tb_SearchTypeS_Des.TextChanged += new System.EventHandler(this.tb_SearchTypeS_Des_TextChanged);
+            // 
+            // cb_SearchTypeS_BID
+            // 
+            this.cb_SearchTypeS_BID.FormattingEnabled = true;
+            this.cb_SearchTypeS_BID.Location = new System.Drawing.Point(83, 18);
+            this.cb_SearchTypeS_BID.Name = "cb_SearchTypeS_BID";
+            this.cb_SearchTypeS_BID.Size = new System.Drawing.Size(143, 33);
+            this.cb_SearchTypeS_BID.TabIndex = 36;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(20, 21);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(67, 25);
+            this.label16.TabIndex = 35;
+            this.label16.Text = "搜尋 : ";
+            // 
+            // cb_EditS_TypeBList
+            // 
+            this.cb_EditS_TypeBList.FormattingEnabled = true;
+            this.cb_EditS_TypeBList.Location = new System.Drawing.Point(93, 448);
+            this.cb_EditS_TypeBList.Name = "cb_EditS_TypeBList";
+            this.cb_EditS_TypeBList.Size = new System.Drawing.Size(143, 33);
+            this.cb_EditS_TypeBList.TabIndex = 34;
+            // 
+            // dgv_TypeS
+            // 
+            this.dgv_TypeS.AllowUserToAddRows = false;
+            this.dgv_TypeS.AllowUserToDeleteRows = false;
+            this.dgv_TypeS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_TypeS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewButtonColumn3,
+            this.dataGridViewButtonColumn4,
+            this.dataGridViewTextBoxColumn6});
+            this.dgv_TypeS.Location = new System.Drawing.Point(18, 67);
+            this.dgv_TypeS.Name = "dgv_TypeS";
+            this.dgv_TypeS.ReadOnly = true;
+            this.dgv_TypeS.RowTemplate.Height = 27;
+            this.dgv_TypeS.Size = new System.Drawing.Size(827, 365);
+            this.dgv_TypeS.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn3.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "PlaceBType";
+            this.dataGridViewTextBoxColumn4.HeaderText = "類別大分類";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Des";
+            this.dataGridViewTextBoxColumn5.HeaderText = "類別小分類";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // dataGridViewButtonColumn3
+            // 
+            this.dataGridViewButtonColumn3.HeaderText = "修改";
+            this.dataGridViewButtonColumn3.Name = "dataGridViewButtonColumn3";
+            this.dataGridViewButtonColumn3.ReadOnly = true;
+            this.dataGridViewButtonColumn3.Text = "修改";
+            this.dataGridViewButtonColumn3.ToolTipText = "修改";
+            this.dataGridViewButtonColumn3.UseColumnTextForButtonValue = true;
+            // 
+            // dataGridViewButtonColumn4
+            // 
+            this.dataGridViewButtonColumn4.HeaderText = "刪除";
+            this.dataGridViewButtonColumn4.Name = "dataGridViewButtonColumn4";
+            this.dataGridViewButtonColumn4.ReadOnly = true;
+            this.dataGridViewButtonColumn4.Text = "刪除";
+            this.dataGridViewButtonColumn4.ToolTipText = "刪除";
+            this.dataGridViewButtonColumn4.UseColumnTextForButtonValue = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "LinkBID";
+            this.dataGridViewTextBoxColumn6.HeaderText = "大分類ID";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.Info;
+            this.button3.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.button3.Location = new System.Drawing.Point(403, 438);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(128, 51);
+            this.button3.TabIndex = 30;
+            this.button3.Text = "New Add";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.Info;
+            this.button4.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.button4.Location = new System.Drawing.Point(537, 438);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(128, 51);
+            this.button4.TabIndex = 31;
+            this.button4.Text = "Cancel";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // tb_Hide_TypeS_ID
+            // 
+            this.tb_Hide_TypeS_ID.Location = new System.Drawing.Point(780, 447);
+            this.tb_Hide_TypeS_ID.Name = "tb_Hide_TypeS_ID";
+            this.tb_Hide_TypeS_ID.Size = new System.Drawing.Size(65, 34);
+            this.tb_Hide_TypeS_ID.TabIndex = 33;
+            this.tb_Hide_TypeS_ID.Visible = false;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(20, 451);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 25);
+            this.label17.TabIndex = 29;
+            this.label17.Text = "地點 : ";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(679, 450);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(104, 25);
+            this.label18.TabIndex = 32;
+            this.label18.Text = "地點S ID : ";
+            this.label18.Visible = false;
+            // 
+            // tb_InsertTypeS
+            // 
+            this.tb_InsertTypeS.Location = new System.Drawing.Point(242, 448);
+            this.tb_InsertTypeS.Name = "tb_InsertTypeS";
+            this.tb_InsertTypeS.Size = new System.Drawing.Size(155, 34);
+            this.tb_InsertTypeS.TabIndex = 28;
+            // 
             // Form_Input
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -828,6 +1193,14 @@
             this.tp_AddPlace_subS.ResumeLayout(false);
             this.tp_AddPlace_subS.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PlaceS)).EndInit();
+            this.tp_AddType.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tp_AddType_subB.ResumeLayout(false);
+            this.tp_AddType_subB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_TypeB)).EndInit();
+            this.tp_AddType_subS.ResumeLayout(false);
+            this.tp_AddType_subS.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_TypeS)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -885,7 +1258,7 @@
         private System.Windows.Forms.TextBox tb_SearchPlaceS_Des;
         private System.Windows.Forms.ComboBox cb_SearchPlaceS_BID;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cb_EditS_TypeBList;
+        private System.Windows.Forms.ComboBox cb_EditS_PlaceBList;
         private System.Windows.Forms.DataGridView dgv_PlaceS;
         private System.Windows.Forms.DataGridViewTextBoxColumn SID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PlaceBType;
@@ -899,6 +1272,38 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tb_insertPlaceS;
+        private System.Windows.Forms.TabPage tp_AddType;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tp_AddType_subB;
+        private System.Windows.Forms.DataGridView dgv_TypeB;
+        private System.Windows.Forms.Button btn_AddTypeB;
+        private System.Windows.Forms.Button btn_EditTypeB_Cancel;
+        private System.Windows.Forms.TextBox tb_Hide_TypeB_ID;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tb_InsertTypeB;
+        private System.Windows.Forms.TabPage tp_AddType_subS;
+        private System.Windows.Forms.TextBox tb_SearchTypeS_Des;
+        private System.Windows.Forms.ComboBox cb_SearchTypeS_BID;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cb_EditS_TypeBList;
+        private System.Windows.Forms.DataGridView dgv_TypeS;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox tb_Hide_TypeS_ID;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox tb_InsertTypeS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn3;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tp_AddType_B_dgv_TypeaB_BID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tp_AddType_B_dgv_TypeaB_Des;
+        private System.Windows.Forms.DataGridViewButtonColumn tp_AddType_B_dgv_TypeaB_Btn_Edit;
+        private System.Windows.Forms.DataGridViewButtonColumn tp_AddType_B_dgv_TypeB_Btn_Del;
     }
 }
 

@@ -10,14 +10,44 @@ namespace TrackExpense
     {
         private db dbConnect = new db();
 
+        public DataTable Get_ExpenseListByQuery(string BPlace)
+        {
+            DataTable dt;
+            string sqlstr = "";
+            sqlstr = "SELECT place_cats.ID, LinkBID, place_catb.Type AS 'PlaceBType',place_cats.Des "
+                + " FROM place_cats "
+                + " LEFT JOIN place_catb ON(place_catb.ID=place_cats.LinkBID) WHERE LinkBID=" + BPlace;
+            dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
         public DataTable Get_ExpenseListByDate(string startDate, string endDate)
         {
             DataTable dt;
             string sqlstr = "";
-            sqlstr = "CALL searchExpenseList("
-                + dbConnect.qo(startDate) + ","
-                + dbConnect.qo(endDate)
-                + ")";
+            sqlstr = "SELECT expenserecord.ID,SpentDate,Content,Price,Currency,receiptNum,"
+                + " (CASE PayByCard WHEN 1 THEN '悠遊卡' WHEN 2 THEN '信用卡' ELSE '' END) AS payCard,"
+                + " paycreditcard.Name AS CreditCardName,"
+                + " expense_catb.Des AS expenseTypeB,"
+                + " expense_cats.Des AS expenseTypeS,Note,"
+                + " place_catb.Type AS PlaceB,"
+                + " place_cats.DES AS PlaceS, "
+                + " (CASE expenserecord.Type WHEN 1 THEN '支出' WHEN 2 THEN '收入' ELSE '' END) AS payType,"
+                + " InsertDate"
+                + " FROM expenserecord"
+                + " LEFT JOIN paycreditcard ON(paycreditcard.ID=expenserecord.PayCreditCardID)"
+                + " LEFT JOIN expense_catb ON(expenserecord.Expense_CatB=expense_catb.BID)"
+                + " LEFT JOIN expense_cats ON(expenserecord.Expense_CatS=expense_cats.SID)"
+                + " LEFT JOIN place_catb ON(expenserecord.Place_CatB=place_catb.ID)"
+                + " LEFT JOIN place_cats ON(expenserecord.Place_CatS=place_cats.ID)"
+                + " WHERE"
+                +" "
+                +" "
+                +" "
+                +" "
+                + " "
+                + " LEFT JOIN place_cats ON(expenserecord.Place_CatS=place_cats.ID)";
+
+
             dt = dbConnect.GetDataTable(sqlstr);
             return dt;
         }
@@ -163,6 +193,15 @@ namespace TrackExpense
             return dt;
         }
 
+        public DataTable Get_TypeCatB()
+        {
+            DataTable dt;
+            string sqlstr = "";
+            sqlstr = "SELECT * FROM expense_catb";
+            dt = dbConnect.GetDataTable(sqlstr);
+            return dt;
+        }
+
         public DataTable Insert_ExpenseRecord(string spentDate,string content,string price,string currency,string payByCard,
             string PayCreditCardID,string expense_CatB, string expense_CatS,string receiptNum,string type,
             string Place_CatB,string Place_CatS,string Note)
@@ -181,7 +220,7 @@ namespace TrackExpense
                 + PayCreditCardID + ","
                 + expense_CatB + ","
                 + expense_CatS + ","
-                + receiptNum + ","
+                + dbConnect.qo(receiptNum) + ","
                 + type + ","
 
                 + Place_CatB + ","

@@ -76,15 +76,22 @@ namespace TrackExpense
             cb_SearchPlaceS_BID.DropDownStyle = ComboBoxStyle.DropDownList;
 
             DataTable dt_PlaceCats_EditTypeB = dt_PlaceCatB_AddPlace.Copy();
-            cb_EditS_TypeBList.DisplayMember = "Type";
-            cb_EditS_TypeBList.ValueMember = "ID";
+            cb_EditS_PlaceBList.DisplayMember = "Type";
+            cb_EditS_PlaceBList.ValueMember = "ID";
             dt_PlaceCats_EditTypeB = PulicFunction.SetFirstChooseItem("ID", "Type", dt_PlaceCats_EditTypeB);
-            cb_EditS_TypeBList.DataSource = dt_PlaceCats_EditTypeB;
-            cb_EditS_TypeBList.SelectedIndex = 0;
-            cb_EditS_TypeBList.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_EditS_PlaceBList.DataSource = dt_PlaceCats_EditTypeB;
+            cb_EditS_PlaceBList.SelectedIndex = 0;
+            cb_EditS_PlaceBList.DropDownStyle = ComboBoxStyle.DropDownList;
             #endregion
 
+            #region tp_Add Type
+            //LOAD Type B DATA
+            DataTable dt_TypeCatB_List = DataAccess.Get_TypeCatB();
+            dgv_TypeB.DataSource = dt_TypeCatB_List;
 
+
+
+            #endregion
         }
 
         private void cb_TypeB_SelectedIndexChanged(object sender, EventArgs e)
@@ -370,12 +377,12 @@ namespace TrackExpense
 
             //Rebind S Type Edit Dropdown
             DataTable dt_PlaceCats_EditTypeB = DataAccess.Get_PlaceCatB();
-            cb_EditS_TypeBList.DisplayMember = "Type";
-            cb_EditS_TypeBList.ValueMember = "ID";
+            cb_EditS_PlaceBList.DisplayMember = "Type";
+            cb_EditS_PlaceBList.ValueMember = "ID";
             dt_PlaceCats_EditTypeB = PulicFunction.SetFirstChooseItem("ID", "Type", dt_PlaceCats_EditTypeB);
-            cb_EditS_TypeBList.DataSource = dt_PlaceCats_EditTypeB;
-            cb_EditS_TypeBList.SelectedIndex = 0;
-            cb_EditS_TypeBList.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_EditS_PlaceBList.DataSource = dt_PlaceCats_EditTypeB;
+            cb_EditS_PlaceBList.SelectedIndex = 0;
+            cb_EditS_PlaceBList.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void btn_EditPlaceB_Cancel_Click(object sender, EventArgs e)
         {
@@ -394,17 +401,17 @@ namespace TrackExpense
             if (e.ColumnIndex == dgv_PlaceS.Columns["dg_btn_SEdit"].Index || e.ColumnIndex == dgv_PlaceS.Columns["dg_btn_SDel"].Index)
             {
                 DataTable dt_PlaceCatB = DataAccess.Get_PlaceCatB();
-                cb_EditS_TypeBList.DataSource = null;
+                cb_EditS_PlaceBList.DataSource = null;
 
                 tb_insertPlaceS.Text = str_PlaceSTypeText;
                 tb_Hide_PlaceS_ID.Text = str_PlaceSID;
 
                 //dt_CatPlaceTypeS = SetFirstChooseItem("Des", dt_CatPlaceTypeS);
-                cb_EditS_TypeBList.DisplayMember = "Type";
-                cb_EditS_TypeBList.ValueMember = "ID";
+                cb_EditS_PlaceBList.DisplayMember = "Type";
+                cb_EditS_PlaceBList.ValueMember = "ID";
                 dt_PlaceCatB = PulicFunction.SetFirstChooseItem("ID", "Type", dt_PlaceCatB);
-                cb_EditS_TypeBList.DataSource = dt_PlaceCatB;
-                cb_EditS_TypeBList.SelectedValue = str_PlaceBID;
+                cb_EditS_PlaceBList.DataSource = dt_PlaceCatB;
+                cb_EditS_PlaceBList.SelectedValue = str_PlaceBID;
 
                 if (e.ColumnIndex == dgv_PlaceS.Columns["dg_btn_SEdit"].Index)
                 {
@@ -420,7 +427,7 @@ namespace TrackExpense
         {
             tb_insertPlaceS.Text = "";
             btn_AddPlaceS.Text = "New Add";
-            cb_EditS_TypeBList.SelectedIndex = 0;
+            cb_EditS_PlaceBList.SelectedIndex = 0;
         }
         private void SearchPlaceS_Event(object sender, EventArgs e)
         {
@@ -453,7 +460,7 @@ namespace TrackExpense
         }
         private void btn_AddPlaceS_Click(object sender, EventArgs e)
         {
-            string str_Place_BID = cb_EditS_TypeBList.SelectedValue.ToString();
+            string str_Place_BID = cb_EditS_PlaceBList.SelectedValue.ToString();
             string str_Place_SDes = tb_insertPlaceS.Text;
             string str_PlaceSEditID = tb_Hide_PlaceS_ID.Text;
 
@@ -524,10 +531,64 @@ namespace TrackExpense
             }
             return false;
         }
+
         #endregion
 
+        #region  tp_Add Type
+        private void dgv_TypeB_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string str_TypeText = dgv_TypeB.Rows[e.RowIndex].Cells["tp_AddType_B_dgv_TypeaB_Des"].Value.ToString();
+            string str_TypeBID = dgv_TypeB.Rows[e.RowIndex].Cells["tp_AddType_B_dgv_TypeaB_BID"].Value.ToString();
 
+            // If click edit
+            if (e.ColumnIndex == dgv_TypeB.Columns["tp_AddType_B_dgv_TypeaB_Btn_Edit"].Index)
+            {
+                btn_AddTypeB.Text = "Edit";
+                tb_InsertTypeB.Text = str_TypeText;
+                tb_Hide_TypeB_ID.Text = str_TypeBID;
+            }
+            else if (e.ColumnIndex == dgv_TypeB.Columns["tp_AddType_B_dgv_TypeB_Btn_Del"].Index)
+            {
+                btn_AddTypeB.Text = "Delete";
+                tb_InsertTypeB.Text = str_TypeText;
+                tb_Hide_TypeB_ID.Text = str_TypeBID;
+            }
+        }
 
+        #endregion
 
+        private void tb_SearchTypeS_Des_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void tb_SearchPlaceS_Des_TextChanged(object sender, EventArgs e)
+        {
+            string SearchPlaceSB_ID = cb_SearchPlaceS_BID.SelectedValue.ToString();
+            string SearchPlaceS_Des = tb_SearchPlaceS_Des.Text;
+
+            DataTable dt_PlaceSList = new DataTable();
+            if (SearchPlaceSB_ID != "0" && SearchPlaceS_Des == "")  // Only Choose B Type
+            {
+                //Search By PlaceS_ID
+                dt_PlaceSList = DataAccess.Get_PlaceCatS_FullList_ByBPlace(SearchPlaceSB_ID);
+            }
+            else if (SearchPlaceSB_ID == "0" && SearchPlaceS_Des == "")  //Not Choose AnyThing
+            {
+                dt_PlaceSList = DataAccess.Get_PlaceCatS();
+            }
+            else if (SearchPlaceSB_ID != "0" && SearchPlaceS_Des != "")  //Search By All Search Option
+            {
+                dt_PlaceSList = DataAccess.Get_PlaceCatS_FullList_ByBPlaceAndDes(SearchPlaceSB_ID, tb_SearchPlaceS_Des.Text);
+            }
+            else if (SearchPlaceSB_ID == "0" && SearchPlaceS_Des != "")  //Search By All Search Option
+            {
+                dt_PlaceSList = DataAccess.Get_PlaceCatS_FullList_ByDes(tb_SearchPlaceS_Des.Text);
+            }
+
+            if (dt_PlaceSList != null)
+            {
+                dgv_PlaceS.DataSource = dt_PlaceSList;
+            }
+        }
     }
 }
